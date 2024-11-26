@@ -36,7 +36,7 @@ const CreateAccount = () => {
             .then(() => {
                 setLoading(false);
                 enqueueSnackbar("Account Created Successfully", { variant: "success" });
-                navigate("/");
+                navigate("/admin/home");
             })
             .catch((error) => {
                 setLoading(false);
@@ -115,16 +115,7 @@ const CreateAccount = () => {
                             />
                             Female
                         </label>
-                        <label>
-                            <input
-                                type="radio"
-                                name="gender"
-                                value="other"
-                                checked={gender === "other"}
-                                onChange={(e) => setGender(e.target.value)}
-                            />
-                            Other
-                        </label>
+                        
                     </div>
                 </div>
                 <div className="my-4">

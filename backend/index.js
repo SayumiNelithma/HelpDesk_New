@@ -5,6 +5,7 @@ import mongoose from 'mongoose';
 import inquiryRoute from './routes/inquiryRoute.js';
 import AdminLoginRoute from './routes/AdminLoginRoute.js';
 import CreateAccountRoute from './routes/CreateAccountRoute.js';
+import UserLoginRoute from './routes/UserLoginRoute.js';
 import cors from 'cors';
 
 const app = express();
@@ -32,6 +33,7 @@ app.get('/', (request, response) => {
 app.use('/inquiry', inquiryRoute);
 app.use('/admin', AdminLoginRoute);
 app.use('/account', CreateAccountRoute);
+app.use('/user', UserLoginRoute);
 
 mongoose
   .connect(mongoDBURL)
