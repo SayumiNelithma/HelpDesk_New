@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import BackButton from '../components/BackButton';
+// import BackButton from '../components/BackButton';
 import Spinner from '../components/Spinner';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
+import Header from '../components/Header';
 
-const CreateAdminLogin = () => {
+const AdminLogin = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -15,34 +15,23 @@ const CreateAdminLogin = () => {
 
   const handleSaveAdmin = (event) => {
     event.preventDefault();
-    if (username === 'admin@123' && email === 'admin@gmail.com'&& password === '123456789') {
-      alert("Login Success")
-      window.location.href="/homedoctor";
-      
-    } else {
-      alert("Enter correct username and password")
-      setError('Invalid username or password');
-    }
-
     setLoading(true);
-    axios
-      .post('http://localhost:5555/admin', data)
-      .then(() => {
-        setLoading(false);
-        enqueueSnackbar('Login Created successfully', { variant: 'success' });
-        navigate('/');
-      })
-      .catch((error) => {
-        setLoading(false);
-        enqueueSnackbar('Error occurred while creating login', { variant: 'error' });
-        console.error(error);
-      });
+
+    // Mock Admin Login Validation
+    if (username === 'admin123' && email === 'admin@gmail.com' && password === '123456789') {
+      setLoading(false);
+      enqueueSnackbar('Login Successful', { variant: 'success' });
+      navigate('/admin/home'); // Navigate to Home Page after successful login
+    } else {
+      setLoading(false);
+      enqueueSnackbar('Invalid username or password', { variant: 'error' });
+    }
   };
 
   return (
     <div className="p-4">
-      <BackButton />
-      <h1 className="text-3xl my-4 text-center">Login</h1> {/* Centered the text */}
+      <Header /> {/* Render the Header component */}
+      <h1 className="text-3xl my-4 text-center">Login</h1>
       {loading && <Spinner />}
       <div className="flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto">
         <div className="my-4">
@@ -83,4 +72,4 @@ const CreateAdminLogin = () => {
   );
 };
 
-export default CreateAdminLogin;
+export default AdminLogin;

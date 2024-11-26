@@ -9,11 +9,12 @@ import DeleteInquiry from './Inquirypages/DeleteInquiry';
 
 import AdminLogin from './Admin/AdminLogin';
 import CreateAccount from './Admin/CreateAccount';
+import AdminHome from './Admin/AdminHome';
 
 const App = () => {
   return (
     <Routes>
-      {/* <Route path='/home' element={<Home />} /> */}
+      <Route path='/home' element={<Home />} />
 
       <Route path='/' element={<AdminLogin />} />
       <Route path='/inquiry/create' element={<CreateInquiry />} />
@@ -21,9 +22,10 @@ const App = () => {
       <Route path='/inquiry/edit/:id' element={<EditInquiry />} />
       <Route path='/inquiry/delete/:id' element={<DeleteInquiry />} />
 
-      <Route path='/admin/login' element={<AdminLogin />} />
+      {/* <Route path='/admin/login' element={<AdminLogin />} /> */}
       <Route path='/account/create' element={<CreateAccount />} />
-
+      <Route path='/admin/home' element={<AdminHome />} />
+      
     </Routes>
   );
 };

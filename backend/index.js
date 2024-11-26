@@ -31,7 +31,7 @@ app.get('/', (request, response) => {
 
 app.use('/inquiry', inquiryRoute);
 app.use('/admin', AdminLoginRoute);
-app.use('/admin', CreateAccountRoute);
+app.use('/account', CreateAccountRoute);
 
 mongoose
   .connect(mongoDBURL)

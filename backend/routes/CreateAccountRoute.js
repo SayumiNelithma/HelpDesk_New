@@ -21,9 +21,14 @@ router.post('/', async (request, response) => {
             });
         }
         const newAccount = {
-            username: request.body.username,
+            fullname: request.body.fullname,
+            address: request.body.address,
             email: request.body.email,
-            password: request.body.password,
+            dob: request.body.dob,
+            gender: request.body.gender,
+            phonenumber: request.body.phonenumber,
+            USERNAME: request.body.USERNAME,
+            PASSWORD: request.body.PASSWORD,
         };
 
         const account = await Account.create(newAccount);
