@@ -13,13 +13,14 @@ import EditInquiry from './Inquirypages/EditInquiry';
 import DeleteInquiry from './Inquirypages/DeleteInquiry';
 
 import UserLogin from './User/UserLogin';
+import UserHome from './User/UserHome';
 
 const App = () => {
   return (
     <Routes>
-      <Route path='/home' element={<Home />} />
+      {/* <Route path='/home' element={<Home />} /> */}
 
-      <Route path='/' element={<AdminLogin />} />
+      <Route path='/' element={<Home />} />
       <Route path='/account/create' element={<CreateAccount />} />
       <Route path='/admin/home' element={<AdminHome />} />
 
@@ -28,9 +29,10 @@ const App = () => {
       <Route path='/inquiry/edit/:id' element={<EditInquiry />} />
       <Route path='/inquiry/delete/:id' element={<DeleteInquiry />} />
 
-      {/* <Route path='/admin/login' element={<AdminLogin />} /> */}
+      <Route path='/admin/login' element={<AdminLogin />} />
       
       <Route path='/user/login' element={<UserLogin />} />
+      <Route path='/user/home' element={<UserHome />} />
       
     </Routes>
   );
