@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Home from './Inquirypages/Home';
 
-import AdminLogin from './Admin/AdminLogin';
+//import AdminLogin from './Admin/AdminLogin';
 import CreateAccount from './Admin/CreateAccount';
 import AdminHome from './Admin/AdminHome';
 
@@ -29,7 +29,7 @@ const App = () => {
       <Route path='/inquiry/edit/:id' element={<EditInquiry />} />
       <Route path='/inquiry/delete/:id' element={<DeleteInquiry />} />
 
-      <Route path='/admin/login' element={<AdminLogin />} />
+      {/* <Route path='/admin/login' element={<AdminLogin />} /> */}
       
       <Route path='/user/login' element={<UserLogin />} />
       <Route path='/user/home' element={<UserHome />} />

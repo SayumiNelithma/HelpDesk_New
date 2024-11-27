@@ -8,15 +8,19 @@ router.post('/', async (request, response) => {
     try {
         if (
             !request.body.u_username ||
-            !request.body.u_password 
+            !request.body.u_email ||
+            !request.body.u_password
+            
         ) {
             return response.status(400).send({
-                message: 'Send all required fields: u_username, u_password',
+                message: 'Send all required fields: u_username, u_password, u_email',
             });
         }
         const newUser = {
             u_username: request.body.u_username,
+            u_email: request.body.u_email,
             u_password: request.body.u_password,
+            
         };
 
         const user = await User.create(newUser);
@@ -70,7 +74,7 @@ router.put('/:id', async (request, response) => {
             !request.body.u_password 
         ) {
             return response.status(400).send({
-                message: 'Send all required fields: u_username, u_password',
+                message: 'Send all required fields: u_username, u_password, u_email',
             });
         }
 
@@ -100,7 +104,7 @@ router.delete('/:id', async (request, response) => {
         const result = await User.findByIdAndDelete(id);
 
         if (!result) {
-            return response.status(404).json({ message: 'USer not found' });
+            return response.status(404).json({ message: 'User not found' });
         }
 
         return response.status(200).json({ message: 'User deleted successfully' });

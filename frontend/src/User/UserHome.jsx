@@ -7,7 +7,8 @@ import { BsInfoCircle } from 'react-icons/bs';
 import { MdOutlineAddBox } from 'react-icons/md';
 import InquiryTable from '../components/home/InquiryTable';
 import InquiryCard from '../components/home/InquiryCard';
-import Header from '../components/Header';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 const UserHome = () => {
   const [inquiry, setInquiry] = useState([]);
@@ -31,7 +32,7 @@ const UserHome = () => {
 
   return (
     <div className='p-4'>
-        <Header />
+        <Navbar />
       <div className='flex justify-center items-center gap-x-4'>
         <button
           className='bg-sky-300 hover:bg-sky-600 px-4 py-1 rounded-lg'
@@ -60,6 +61,7 @@ const UserHome = () => {
       ) : (
         <InquiryCard inquiry={inquiry} />
       )}
+      <Footer/>
     </div>
   );
 };

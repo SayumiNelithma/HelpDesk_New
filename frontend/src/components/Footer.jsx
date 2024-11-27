@@ -4,10 +4,10 @@ const Footer = () => {
   return (
     <footer style={styles.footer}>
       <div style={styles.container}>
-        {/* Footer Content */}
+    
         <p style={styles.text}>© 2024 Support Desk. All rights reserved.</p>
         
-        {/* Navigation Links */}
+       
         <div style={styles.links}>
           <a href="/privacy" style={styles.link}>
             Privacy Policy
@@ -26,7 +26,7 @@ const Footer = () => {
 
 const styles = {
   footer: {
-    backgroundColor: '#4682B4', // Match header background color
+    backgroundColor: '#5072A7', // Match header background color
     color: '#fff', // White text color
     padding: '20px 30px', // Space around the footer
     width: '100%', // Full width of the footer

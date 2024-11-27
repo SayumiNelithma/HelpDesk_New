@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Footer from '../components/Footer';
 
 const Home = () => {
   const navigate = useNavigate(); // Use navigate for programmatic navigation
@@ -22,6 +23,7 @@ const Home = () => {
           Create Admin Account
         </button>
       </div>
+      <Footer/>
     </div>
   );
 };

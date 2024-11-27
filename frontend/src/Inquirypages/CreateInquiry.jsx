@@ -4,6 +4,8 @@ import Spinner from '../components/Spinner';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 const CreateInquiry = () => {
   const [requestType, setrequestType] = useState('');
@@ -40,6 +42,7 @@ const CreateInquiry = () => {
 
   return (
     <div className='p-4'>
+      <Navbar/>
       <BackButton />
       <h1 className='text-3xl my-4'>Create Inquiry</h1>
       {loading ? <Spinner /> : ''}
@@ -111,6 +114,7 @@ const CreateInquiry = () => {
           Save
         </button>
       </div>
+      <Footer/>
     </div>
   );
 }

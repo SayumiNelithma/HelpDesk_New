@@ -4,16 +4,15 @@ import Spinner from "../components/Spinner";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useSnackbar } from "notistack";
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 const CreateAccount = () => {
     const [fullname, setFullname] = useState("");
-    const [address, setAddress] = useState("");
     const [email, setEmail] = useState("");
-    const [dob, setDob] = useState("");
-    const [gender, setGender] = useState("");
-    const [phonenumber, setPhoneNumber] = useState("");
     const [USERNAME, setUSERNAME] = useState("");
     const [PASSWORD, setPASSWORD] = useState("");
+    const [role, setrole] = useState("");
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const { enqueueSnackbar } = useSnackbar();
@@ -21,13 +20,10 @@ const CreateAccount = () => {
     const handleSaveAccount = () => {
         const data = {
             fullname,
-            address,
             email,
-            dob,
-            gender,
-            phonenumber,
             USERNAME,
             PASSWORD,
+            role,
         };
 
         setLoading(true);
@@ -49,10 +45,12 @@ const CreateAccount = () => {
 
     return (
         <div className="p-4">
+            <Navbar />
             <BackButton />
             <h1 className="text-3xl my-4">Create User Account</h1>
             {loading && <Spinner />}
             <div className="flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto">
+
                 <div className="my-4">
                     <label className="text-xl mr-4 text-gray-500">Full Name</label>
                     <input
@@ -63,16 +61,7 @@ const CreateAccount = () => {
                         placeholder="Enter your full name"
                     />
                 </div>
-                <div className="my-4">
-                    <label className="text-xl mr-4 text-gray-500">Address</label>
-                    <input
-                        type="text"
-                        value={address}
-                        onChange={(e) => setAddress(e.target.value)}
-                        className="border-2 border-gray-500 px-4 py-2 w-full"
-                        placeholder="Enter your address"
-                    />
-                </div>
+
                 <div className="my-4">
                     <label className="text-xl mr-4 text-gray-500">Email</label>
                     <input
@@ -83,51 +72,20 @@ const CreateAccount = () => {
                         placeholder="Enter your email"
                     />
                 </div>
-                <div className="my-4">
-                    <label className="text-xl mr-4 text-gray-500">Date of Birth</label>
-                    <input
-                        type="date"
-                        value={dob}
-                        onChange={(e) => setDob(e.target.value)}
-                        className="border-2 border-gray-500 px-4 py-2 w-full"
-                    />
+
+                <div className='my-4'>
+                    <label className='text-xl mr-4 text-gray-500'>User Role</label>
+                    <select
+                        value={role}
+                        onChange={(e) => setrole(e.target.value)}
+                        className='border-2 border-gray-500 px-4 py-2 w-full'
+                    >
+                        <option value="" disabled>Select the user's role</option>
+                        <option value="User">Low</option>
+                        <option value="Admin">Medium</option>
+                    </select>
                 </div>
-                <div className="my-4">
-                    <label className="text-xl text-gray-500">Gender</label>
-                    <div className="mt-2">
-                        <label className="mr-4">
-                            <input
-                                type="radio"
-                                name="gender"
-                                value="male"
-                                checked={gender === "male"}
-                                onChange={(e) => setGender(e.target.value)}
-                            />
-                            Male
-                        </label>
-                        <label className="mr-4">
-                            <input
-                                type="radio"
-                                name="gender"
-                                value="female"
-                                checked={gender === "female"}
-                                onChange={(e) => setGender(e.target.value)}
-                            />
-                            Female
-                        </label>
-                        
-                    </div>
-                </div>
-                <div className="my-4">
-                    <label className="text-xl mr-4 text-gray-500">Phone Number</label>
-                    <input
-                        type="text"
-                        value={phonenumber}
-                        onChange={(e) => setPhoneNumber(e.target.value)}
-                        className="border-2 border-gray-500 px-4 py-2 w-full"
-                        placeholder="Enter your phone number"
-                    />
-                </div>
+
                 <div className="my-4">
                     <label className="text-xl mr-4 text-gray-500">Username</label>
                     <input
@@ -138,6 +96,7 @@ const CreateAccount = () => {
                         placeholder="Enter your username"
                     />
                 </div>
+
                 <div className="my-4">
                     <label className="text-xl mr-4 text-gray-500">Password</label>
                     <input
@@ -148,10 +107,12 @@ const CreateAccount = () => {
                         placeholder="Enter your password"
                     />
                 </div>
+
                 <button className="p-2 bg-sky-300 m-8" onClick={handleSaveAccount}>
                     Create Account
                 </button>
             </div>
+            <Footer />
         </div>
     );
 };

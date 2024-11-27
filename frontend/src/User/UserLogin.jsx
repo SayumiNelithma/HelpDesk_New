@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-// import BackButton from '../components/BackButton';
-import Spinner from '../components/Spinner';
 import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
-import Header from '../components/Header';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+import Spinner from '../components/Spinner';
 import axios from 'axios';
 
 const UserLogin = () => {
   const [u_username, setu_username] = useState('');
   const [u_password, setu_password] = useState('');
+  const [u_email, setu_email] = useState('');
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
@@ -20,16 +22,16 @@ const UserLogin = () => {
     const loginData = {
       u_username,
       u_password,
+      u_email,
     };
 
-    // Replace with an actual API call for user authentication
     axios
-      .post('http://localhost:5555/user', loginData) // Update the URL to match your API
+      .post('http://localhost:5555/user', loginData)
       .then((response) => {
         setLoading(false);
         if (response.data.success) {
           enqueueSnackbar('Login Successful', { variant: 'success' });
-          navigate('/inquiry/create'); // Redirect to user home page
+          navigate('/inquiry/create');
         } else {
           enqueueSnackbar('Invalid credentials', { variant: 'error' });
         }
@@ -43,39 +45,49 @@ const UserLogin = () => {
 
   return (
     <div className="p-4">
-      <Header /> {/* Render the Header component */}
+      <Navbar />
 
-      {/* Add the User Login heading directly below the Header */}
-      <div className="mt-32 text-center">
-        <h1 className="text-3xl">User Login</h1>
+      <div className="mt-20 text-center">
+        <h1 className="text-3xl">Login</h1>
       </div>
 
-      {loading && <Spinner />} {/* Display the Spinner component if loading */}
-      
-      {/* Added top margin to create space between the heading and the login form */}
-      <div className="flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto mt-10">
+      {loading && <Spinner />}
+
+      <div className="flex flex-col border-2 border-sky-400 rounded-xl w-[400px] p-4 mx-auto mt-6">
         <div className="my-4">
-         
           <label className="text-xl mr-4 text-gray-500">Username</label>
           <input
             type="text"
             value={u_username}
             onChange={(e) => setu_username(e.target.value)}
-            className="border-2 border-gray-500 px-4 py-2 w-full"
+            className="border-2 border-gray-500 px-4 py-2 w-80 ml-4"
             placeholder="Enter Username"
           />
         </div>
         <div className="my-4">
-          
-          <label className="text-xl mr-4 text-gray-500">Password</label>
+          <label className="text-xl mr-4 text-gray-500">Email</label>
           <input
-            type="password"
-            value={u_password}
-            onChange={(e) => setu_password(e.target.value)}
-            className="border-2 border-gray-500 px-4 py-2 w-full"
-            placeholder="Enter Password"
+            type="email"
+            value={u_email}
+            onChange={(e) => setu_email(e.target.value)}
+            className="border-2 border-gray-500 px-4 py-2 w-80"
+            placeholder="Enter Email"
           />
         </div>
+        <div className="my-4 relative">
+          <label className="text-xl mr-4 text-gray-500">Password</label>
+          <div className="relative">
+            <input
+              type={passwordVisible ? 'text' : 'password'}
+              value={u_password}
+              onChange={(e) => setu_password(e.target.value)}
+              className="border-2 border-gray-500 px-4 py-2 w-80 pr-10"
+              placeholder="Enter Password"
+            />
+            
+          </div>
+        </div>
+        
         <button
           className="p-2 bg-sky-300 m-8"
           onClick={handleLogin}
@@ -83,6 +95,7 @@ const UserLogin = () => {
           Login
         </button>
       </div>
+      <Footer />
     </div>
   );
 };

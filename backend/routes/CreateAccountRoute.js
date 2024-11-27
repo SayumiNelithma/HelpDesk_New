@@ -8,27 +8,23 @@ router.post('/', async (request, response) => {
     try {
         if (
             !request.body.fullname ||
-            !request.body.address ||
             !request.body.email ||
-            !request.body.dob ||
-            !request.body.gender ||
-            !request.body.phonenumber ||
             !request.body.USERNAME ||
-            !request.body.PASSWORD  
+            !request.body.PASSWORD ||
+            !request.body.role ||
+            !request.body.status
         ) {
             return response.status(400).send({
-                message: 'Send all required fields: fullname, address, email, dob, gender, phonenumber, USERNAME, PASSWORD',
+                message: 'Send all required fields: fullname, email, USERNAME, PASSWORD, role, status',
             });
         }
         const newAccount = {
             fullname: request.body.fullname,
-            address: request.body.address,
             email: request.body.email,
-            dob: request.body.dob,
-            gender: request.body.gender,
-            phonenumber: request.body.phonenumber,
             USERNAME: request.body.USERNAME,
             PASSWORD: request.body.PASSWORD,
+            role: request.body.role,
+            status: request.body.status,
         };
 
         const account = await Account.create(newAccount);
@@ -79,16 +75,14 @@ router.put('/:id', async (request, response) => {
     try {
         if (
             !request.body.fullname ||
-            !request.body.address ||
             !request.body.email ||
-            !request.body.dob ||
-            !request.body.gender ||
-            !request.body.phonenumber ||
             !request.body.USERNAME ||
-            !request.body.PASSWORD
+            !request.body.PASSWORD ||
+            !request.body.role ||
+            !request.body.status
         ) {
             return response.status(400).send({
-                message: 'Send all required fields: fullname, address, email, dob, gender, phonenumber, USERNAME, PASSWORD',
+                message: 'Send all required fields: fullname, email, USERNAME, PASSWORD, role, status',
             });
         }
 

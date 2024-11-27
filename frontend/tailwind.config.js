@@ -5,7 +5,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'braves-navy': '#13274F', // Custom color for Braves-Navy
+      },
+    },
   },
   plugins: [],
-}
+};

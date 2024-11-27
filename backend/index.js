@@ -3,7 +3,6 @@ import { PORT, mongoDBURL } from './config.js';
 import mongoose from 'mongoose';
 //import Inquiry from './models/inquiryModel.js';
 import inquiryRoute from './routes/inquiryRoute.js';
-import AdminLoginRoute from './routes/AdminLoginRoute.js';
 import CreateAccountRoute from './routes/CreateAccountRoute.js';
 import UserLoginRoute from './routes/UserLoginRoute.js';
 import cors from 'cors';
@@ -31,7 +30,6 @@ app.get('/', (request, response) => {
 });
 
 app.use('/inquiry', inquiryRoute);
-app.use('/admin', AdminLoginRoute);
 app.use('/account', CreateAccountRoute);
 app.use('/user', UserLoginRoute);
 

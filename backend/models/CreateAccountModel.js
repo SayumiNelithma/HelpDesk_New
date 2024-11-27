@@ -8,30 +8,8 @@ const CreateAccountSchema = new mongoose.Schema({
         
       },
 
-      address: {
-        type: String,
-        required: true,
-
-      },
-
       email: {
         type: String,
-        required: true,
-        
-      },
-      dob: {
-        type: Date,
-        required: true,
-
-      },
-
-      gender: {
-        type: String,
-        required: true
-      },
-
-      phonenumber: {
-        type: Number,
         required: true,
         
       },
@@ -46,6 +24,18 @@ const CreateAccountSchema = new mongoose.Schema({
         type: String,
         required: true,
 
+      },
+
+      role: {
+        type: String,
+        required: true,
+        
+      },
+
+      status: {
+        type: Boolean,
+        required: true,
+        
       },
 },
 { timestamps: true }

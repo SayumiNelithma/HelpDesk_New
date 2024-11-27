@@ -9,11 +9,19 @@ const UserLoginSchema = new mongoose.Schema({
         
       },
 
+      U_email: {
+        type: String,
+        required: true
+
+      },
+
       u_password: {
         type: String,
         required: true,
         
       },
+
+      
       
 },
 { timestamps: true }
