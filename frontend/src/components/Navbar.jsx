@@ -35,7 +35,7 @@ const styles = {
     position: "fixed",
     top: 0,
     left: 0,
-    backgroundColor: "#5072A7",
+    backgroundColor: "#1F305E",
     color: "#fff",
     padding: "20px 30px",
     width: "100%",

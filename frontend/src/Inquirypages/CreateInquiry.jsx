@@ -42,7 +42,7 @@ const CreateInquiry = () => {
 
   return (
     <div className='p-4'>
-      <Navbar/>
+      <Navbar />
       <BackButton />
       <h1 className='text-3xl my-4'>Create Inquiry</h1>
       {loading ? <Spinner /> : ''}
@@ -114,7 +114,7 @@ const CreateInquiry = () => {
           Save
         </button>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import express, { request, response } from 'express';
+import express from 'express';
 import { PORT, mongoDBURL } from './config.js';
 import mongoose from 'mongoose';
 //import Inquiry from './models/inquiryModel.js';
@@ -6,6 +6,8 @@ import inquiryRoute from './routes/inquiryRoute.js';
 import CreateAccountRoute from './routes/CreateAccountRoute.js';
 import UserLoginRoute from './routes/UserLoginRoute.js';
 import cors from 'cors';
+import Account from './models/CreateAccountModel.js';
+
 
 const app = express();
 
@@ -14,15 +16,15 @@ app.use(express.json());
 
 // Middleware for handling CORS POLICY
 // Option 1: Allow All Origins with Default of cors(*)
-app.use(cors());
+//app.use(cors());
 // Option 2: Allow Custom Origins
-// app.use(
-//    cors({
-//      origin: 'http://localhost:3000',
-//      methods: ['GET', 'POST', 'PUT', 'DELETE'],
-//      allowedHeaders: ['Content-Type'],
-//    })
-//  );
+app.use(
+   cors({
+     origin: 'http://localhost:3000',
+     methods: ['GET', 'POST', 'PUT', 'DELETE'],
+     allowedHeaders: ['Content-Type'],
+   })
+ );
 
 app.get('/', (request, response) => {
   console.log(request);
@@ -33,6 +35,10 @@ app.use('/inquiry', inquiryRoute);
 app.use('/account', CreateAccountRoute);
 app.use('/user', UserLoginRoute);
 
+
+app.post('/account', (req,res) => {
+  
+})
 mongoose
   .connect(mongoDBURL)
   .then(() => {

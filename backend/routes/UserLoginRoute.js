@@ -13,7 +13,7 @@ router.post('/', async (request, response) => {
             
         ) {
             return response.status(400).send({
-                message: 'Send all required fields: u_username, u_password, u_email',
+                message: 'Send all required fields: u_username, u_email, u_password',
             });
         }
         const newUser = {

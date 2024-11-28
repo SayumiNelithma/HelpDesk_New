@@ -3,13 +3,13 @@ import mongoose from 'mongoose';
 // Define the schema for the user model
 const UserLoginSchema = new mongoose.Schema({
 
-    u_username: {
+      u_username: {
         type: String,
         required: true,
         
       },
 
-      U_email: {
+      u_email: {
         type: String,
         required: true
 

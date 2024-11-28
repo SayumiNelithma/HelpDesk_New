@@ -26,11 +26,12 @@ const Footer = () => {
 
 const styles = {
   footer: {
-    backgroundColor: '#5072A7', // Match header background color
+    
+    backgroundColor: '#1F305E', // Match header background color
     color: '#fff', // White text color
-    padding: '20px 30px', // Space around the footer
+    padding: '40px', // Space around the footer
     width: '100%', // Full width of the footer
-    position: 'fixed', // Stick to the bottom of the page
+    // Stick to the bottom of the page
     bottom: 0,
     left: 0,
     boxSizing: 'border-box', // Include padding in width/height calculations

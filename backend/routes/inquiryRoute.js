@@ -3,7 +3,7 @@ import Inquiry from '../models/inquiryModel.js';
 
 const router = express.Router();
 
-//route for save a new book
+//route for save a new 
 router.post('/', async (request, response) => {
     try {
         if (
