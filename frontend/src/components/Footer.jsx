@@ -29,7 +29,7 @@ const styles = {
     
     backgroundColor: '#1F305E', // Match header background color
     color: '#fff', // White text color
-    padding: '40px', // Space around the footer
+    padding: '30px', // Space around the footer
     width: '100%', // Full width of the footer
     // Stick to the bottom of the page
     bottom: 0,

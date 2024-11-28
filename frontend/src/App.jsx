@@ -21,7 +21,7 @@ const App = () => {
       {/* <Route path='/home' element={<Home />} /> */}
 
       <Route path='/' element={<Home />} />
-      <Route path='/account/create' element={<CreateAccount />} />
+      <Route path='/user' element={<CreateAccount />} />
       <Route path='/admin/home' element={<AdminHome />} />
 
       <Route path='/inquiry/create' element={<CreateInquiry />} />
@@ -31,7 +31,7 @@ const App = () => {
 
       {/* <Route path='/admin/login' element={<AdminLogin />} /> */}
       
-      <Route path='/user/login' element={<UserLogin />} />
+      <Route path='/login' element={<UserLogin />} />
       <Route path='/user/home' element={<UserHome />} />
       
     </Routes>

@@ -9,8 +9,7 @@ const Home = () => {
 
   // Define handleLogin function
   const handleLogin = () => {
-    // You can add logic here to handle login, for example:
-    navigate("/user/login");
+    navigate("/login");
   };
 
   return (
@@ -22,23 +21,22 @@ const Home = () => {
           backgroundImage: `url(${SLIITImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          opacity: 0.3, // Decrease opacity for background image
-          zIndex: -1, // Ensure image stays behind the content
+          opacity: 0.2,
+          zIndex: -1,
         }}
       ></div>
 
       <div
         className="absolute top-0 left-0 w-full h-full bg-black opacity-30"
         style={{
-          zIndex: -1, // Keeps the overlay behind the content
+          zIndex: -1,
         }}
       ></div>
 
       <Navbar />
-      <div className="flex flex-1 justify-center items-center mt-3">
+
+      <div className="flex flex-1 flex-col items-center mt-48">
         <div className="flex flex-col gap-y-10 items-center">
-          {" "}
-          {/* Increased gap here */}
           <h1 className="text-5xl font-bold text-braves-navy">
             Welcome to SLIIT Support Services
           </h1>
@@ -56,7 +54,47 @@ const Home = () => {
           >
             Log in
           </button>
+
+          {/* Cards Section */}
+        <div className="flex justify-center items-center mt-10 mb-32 px-10 w-full">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Card 1 */}
+            <div className="bg-[#dbdbdb] shadow-md rounded-lg p-6">
+              <h2 className="text-2xl font-bold text-gray-800">Service 1</h2>
+              <p className="text-gray-600 mt-2">
+                Brief description of the service or feature.
+              </p>
+              <button className="mt-4 bg-[#002D62] text-white p-2 px-4 rounded-md hover:bg-[#001f4d]">
+                Learn More
+              </button>
+            </div>
+
+            {/* Card 2 */}
+            <div className="bg-[#dbdbdb] shadow-md rounded-lg p-6">
+              <h2 className="text-2xl font-bold text-gray-800">Service 2</h2>
+              <p className="text-gray-600 mt-2">
+                Brief description of the service or feature.
+              </p>
+              <button className="mt-4 bg-[#002D62] text-white p-2 px-4 rounded-md hover:bg-[#001f4d]">
+                Learn More
+              </button>
+            </div>
+
+            {/* Card 3 */}
+            <div className="bg-[#dbdbdb] shadow-md rounded-lg p-6">
+              <h2 className="text-2xl font-bold text-gray-800">Service 3</h2>
+              <p className="text-gray-600 mt-2">
+                Brief description of the service or feature.
+              </p>
+              <button className="mt-4 bg-[#002D62] text-white p-2 px-4 rounded-md hover:bg-[#001f4d]">
+                Learn More
+              </button>
+            </div>
+          </div>
         </div>
+        </div>
+
+        
       </div>
 
       <Footer />

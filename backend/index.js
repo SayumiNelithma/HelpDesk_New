@@ -1,12 +1,12 @@
-import express from 'express';
+import express, { response } from 'express';
 import { PORT, mongoDBURL } from './config.js';
 import mongoose from 'mongoose';
 //import Inquiry from './models/inquiryModel.js';
 import inquiryRoute from './routes/inquiryRoute.js';
-import CreateAccountRoute from './routes/CreateAccountRoute.js';
-import UserLoginRoute from './routes/UserLoginRoute.js';
+//import UserRoute from './routes/UserRoute.js';
 import cors from 'cors';
-import Account from './models/CreateAccountModel.js';
+import bcrypt from 'bcrypt'
+import UserModel from './models/UserModel.js';
 
 
 const app = express();
@@ -21,8 +21,8 @@ app.use(express.json());
 app.use(
    cors({
      origin: 'http://localhost:3000',
-     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-     allowedHeaders: ['Content-Type'],
+     methods: ['GET', 'POST'],
+     credentials: true
    })
  );
 
@@ -31,14 +31,58 @@ app.get('/', (request, response) => {
   return response.status(234).send('Welcome To MERN Stack Tutorial');
 });
 
-app.use('/inquiry', inquiryRoute);
-app.use('/account', CreateAccountRoute);
-app.use('/user', UserLoginRoute);
+
+// app.post('/user', (req, res) => {
+//   const {fullname, email, password} = req.body;
+//   bcrypt.hash(password, 10)
+//   .then(hash => {
+//     UserModel.create({fullname, email, password: hash})
+//     .then(user => res.json("Success"))
+//     .catch(err => res.json(err))
+//   }).catch(err => res.json(err))
+// })
+
+app.post('/user', (req, res) => {
+  const { fullname, email, password } = req.body;
+
+  // Directly create the user with the plain password
+  UserModel.create({ fullname, email, password })
+    .then(user => res.json("Success"))
+    .catch(err => res.json(err));
+});
 
 
-app.post('/account', (req,res) => {
-  
+app.post('/login', (req, res) =>{
+  const {email, password} = req.body;
+  UserModel.findOne({email: email})
+  .then(user => {
+    if(user){
+      bcrypt.compare(password, user.password), (err, response) => {
+        if(response){
+
+          return res.json("Login successful");
+          // const token = jwt.sign({email: user.email, role: user.role},
+          //   "jwt-secret-key", {expiresIn: 'id'}
+          // )
+
+          // res.cookie("token", token)
+          // return res.json("success")
+
+        }else{
+          return res.json("The password is incorrect")
+        }
+      }
+
+    } else{
+      return res.json("No record existed")
+    }
+  })
 })
+
+app.use('/inquiry', inquiryRoute);
+
+
+
 mongoose
   .connect(mongoDBURL)
   .then(() => {
