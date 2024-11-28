@@ -52,32 +52,34 @@ app.post('/user', (req, res) => {
 });
 
 
-app.post('/login', (req, res) =>{
-  const {email, password} = req.body;
-  UserModel.findOne({email: email})
-  .then(user => {
-    if(user){
-      bcrypt.compare(password, user.password), (err, response) => {
-        if(response){
+app.post('/login', (req, res) => {
+  const { email, password } = req.body;
 
-          return res.json("Login successful");
-          // const token = jwt.sign({email: user.email, role: user.role},
-          //   "jwt-secret-key", {expiresIn: 'id'}
-          // )
-
-          // res.cookie("token", token)
-          // return res.json("success")
-
-        }else{
-          return res.json("The password is incorrect")
-        }
+  UserModel.findOne({ email: email })
+    .then(user => {
+      if (user) {
+        bcrypt.compare(password, user.password, (err, response) => {
+          if (err) {
+            return res.status(500).json("Error comparing passwords");
+          }
+          if (response) {
+            return res.json("Login successful");
+          } else {
+            return res.json("The password is incorrect");
+          }
+        });
+      } else {
+        // If no user is found, return an appropriate response
+        return res.status(404).json("No record existed");
       }
+    })
+    .catch(err => {
+      console.error(err);
+      return res.status(500).json("Error occurred");
+    });
+});
 
-    } else{
-      return res.json("No record existed")
-    }
-  })
-})
+
 
 app.use('/inquiry', inquiryRoute);
 

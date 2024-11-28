@@ -16,50 +16,33 @@ const UserLogin = () => {
   const { enqueueSnackbar } = useSnackbar();
 
   axios.defaults.withCredentials = true;
+
   const handleLogin = (e) => {
-    e.preventDefault()
-        axios.post('http://localhost:5555/login', {email, password })
-            .then(res => {
-                setLoading(false);
+    e.preventDefault();
+    setLoading(true);  // Start loading spinner
+
+    axios
+        .post('http://localhost:5555/login', { email, password })
+        .then(res => {
+            setLoading(false);  // Stop loading spinner
+            if (res.data === "Login successful") {
                 enqueueSnackbar("Login Successful", { variant: "success" });
-                console.log(res.data)
-                navigate("/user");
-            }).catch((error) => {
-                setLoading(false);
-                enqueueSnackbar("Error occurred while login", {
-                    variant: "error",
-                });
-                console.error(error);
-            })
-  }
-
-  // const handleLogin = (event) => {
-  //   event.preventDefault();
-  //   setLoading(true);
-
-  //   const loginData = {
-  //     u_username,
-  //     u_password,
-  //     u_email,
-  //   };
-
-  //   axios
-  //     .post("http://localhost:5555/user", loginData) // Sends login data
-  //     .then((response) => {
-  //       if (response.data.success) {
-  //         enqueueSnackbar("Login Successful", { variant: "success" });
-  //         navigate("/account/create"); // Navigate to a dashboard or another page
-  //       } else {
-  //         enqueueSnackbar("Invalid credentials", { variant: "error" });
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       enqueueSnackbar("Error occurred while logging in", {
-  //         variant: "error",
-  //       });
-  //       console.error(error);
-  //     });
-  // };
+                console.log(res.data);
+                navigate("/user/home");
+            } else {
+                enqueueSnackbar(res.data, { variant: "error" }); // Display error message (like incorrect password or no user)
+            }
+        })
+        .catch((error) => {
+            setLoading(false);  // Stop loading spinner
+            if (error.response && error.response.status === 404) {
+                enqueueSnackbar("No record existed", { variant: "error" }); // Show custom message when no user exists
+            } else {
+                enqueueSnackbar("Error occurred while login", { variant: "error" });
+            }
+            console.error(error);
+        });
+};
 
   return (
     <div className="min-h-screen flex flex-col mt-16">
