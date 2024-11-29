@@ -1,13 +1,12 @@
-import express, { response } from 'express';
-import { PORT, mongoDBURL } from './config.js';
-import mongoose from 'mongoose';
+import express, { response } from "express";
+import { PORT, mongoDBURL } from "./config.js";
+import mongoose from "mongoose";
 //import Inquiry from './models/inquiryModel.js';
-import inquiryRoute from './routes/inquiryRoute.js';
+import inquiryRoute from "./routes/inquiryRoute.js";
 //import UserRoute from './routes/UserRoute.js';
-import cors from 'cors';
-import bcrypt from 'bcrypt'
-import UserModel from './models/UserModel.js';
-
+import cors from "cors";
+import bcrypt from "bcrypt";
+import UserModel from "./models/UserModel.js";
 
 const app = express();
 
@@ -19,18 +18,17 @@ app.use(express.json());
 //app.use(cors());
 // Option 2: Allow Custom Origins
 app.use(
-   cors({
-     origin: 'http://localhost:3000',
-     methods: ['GET', 'POST'],
-     credentials: true
-   })
- );
+  cors({
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"],
+    credentials: true,
+  })
+);
 
-app.get('/', (request, response) => {
+app.get("/", (request, response) => {
   console.log(request);
-  return response.status(234).send('Welcome To MERN Stack Tutorial');
+  return response.status(234).send("Welcome To MERN Stack Tutorial");
 });
-
 
 // app.post('/user', (req, res) => {
 //   const {fullname, email, password} = req.body;
@@ -42,53 +40,45 @@ app.get('/', (request, response) => {
 //   }).catch(err => res.json(err))
 // })
 
-app.post('/user', (req, res) => {
+app.post("/user", (req, res) => {
   const { fullname, email, password } = req.body;
 
-  // Directly create the user with the plain password
+
   UserModel.create({ fullname, email, password })
-    .then(user => res.json("Success"))
-    .catch(err => res.json(err));
+    .then((user) => res.json("Success"))
+    .catch((err) => res.json(err));
 });
 
-
-app.post('/login', (req, res) => {
+app.post("/login", (req, res) => {
   const { email, password } = req.body;
 
   UserModel.findOne({ email: email })
-    .then(user => {
+    .then((user) => {
       if (user) {
-        bcrypt.compare(password, user.password, (err, response) => {
-          if (err) {
-            return res.status(500).json("Error comparing passwords");
-          }
-          if (response) {
-            return res.json("Login successful");
-          } else {
-            return res.json("The password is incorrect");
-          }
-        });
+        
+        if (password === user.password) {
+          return res.json({ status: "Success", role: user.role });
+        } else {
+          return res.json("The password is incorrect");
+        }
       } else {
-        // If no user is found, return an appropriate response
-        return res.status(404).json("No record existed");
+       
+        return res.status(404).json("This user doesn't exist");
       }
     })
-    .catch(err => {
+
+    .catch((err) => {
       console.error(err);
       return res.status(500).json("Error occurred");
     });
 });
 
-
-
-app.use('/inquiry', inquiryRoute);
-
-
+app.use("/inquiry", inquiryRoute);
 
 mongoose
   .connect(mongoDBURL)
   .then(() => {
-    console.log('App connected to database');
+    console.log("App connected to database");
     app.listen(PORT, () => {
       console.log(`App is listening to port: ${PORT}`);
     });

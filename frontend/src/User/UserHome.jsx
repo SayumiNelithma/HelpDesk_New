@@ -1,69 +1,114 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import Spinner from '../components/Spinner';
-import { Link, useNavigate } from 'react-router-dom';
-import { AiOutlineEdit } from 'react-icons/ai';
-import { BsInfoCircle } from 'react-icons/bs';
-import { MdOutlineAddBox } from 'react-icons/md';
-import InquiryTable from '../components/home/InquiryTable';
-import InquiryCard from '../components/home/InquiryCard';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import SLIITImage from "../assets/SLIIT.jpg";
 
-const UserHome = () => {
-  const [inquiry, setInquiry] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [showType, setShowType] = useState('table');
-  const navigate = useNavigate(); // Use navigate for programmatic navigation
+const Home = () => {
+  const navigate = useNavigate();
+  const [searchTerm, setSearchTerm] = useState("");
 
-  useEffect(() => {
-    setLoading(true);
-    axios
-      .get('http://localhost:5555/inquiry')
-      .then((response) => {
-        setInquiry(response.data.data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.log(error);
-        setLoading(false);
-      });
-  }, []);
+  const handleSearch = (e) => {
+    e.preventDefault();
+    // Handle search logic here, e.g., redirect to search results page
+    navigate(`/search?q=${searchTerm}`);
+  };
 
   return (
-    <div className='p-4'>
-        <Navbar />
-      <div className='flex justify-center items-center gap-x-4'>
-        <button
-          className='bg-sky-300 hover:bg-sky-600 px-4 py-1 rounded-lg'
-          onClick={() => setShowType('table')}
-        >
-          Table
-        </button>
-        <button
-          className='bg-sky-300 hover:bg-sky-600 px-4 py-1 rounded-lg'
-          onClick={() => setShowType('card')}
-        >
-          Inquiry Card
-        </button>
-        
+    <div className="flex flex-col min-h-screen relative">
+      {/* Background Image with transparency */}
+      <div
+        className="absolute top-0 left-0 w-full h-full bg-cover bg-center"
+        style={{
+          backgroundImage: `url(${SLIITImage})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          opacity: 0.2,
+          zIndex: -1,
+        }}
+      ></div>
+
+      <div
+        className="absolute top-0 left-0 w-full h-full bg-black opacity-30"
+        style={{
+          zIndex: -1,
+        }}
+      ></div>
+
+      <Navbar />
+
+      <div className="flex flex-1 flex-col items-center mt-48">
+        <div className="flex flex-col gap-y-10 items-center">
+          {/* Search Bar */}
+          <form onSubmit={handleSearch} className="flex items-center">
+            <input
+              type="text"
+              placeholder="How we can help you today?"
+              className="border border-gray-300 p-2 rounded-l-md flex-grow" // Use flex-grow to fill available space
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <button
+              type="submit"
+              className="bg-[#000000] text-white p-2 px-4 rounded-r-md hover:bg-[#232323]"
+            >
+              Search
+            </button>
+            <div className="mt-8 flex justify-end">
+          <Link to="/inquiry/create">
+            <button
+              className="bg-[#3258a3] text-white font-semibold hover:bg-sky-600 px-6 py-3 rounded-sm"
+              onClick={() => setShowType("card")}
+            >
+              Submit a new inquiry
+            </button>
+          </Link>
+        </div>
+          </form>
+
+          {/* Cards Section */}
+          <div className="flex justify-center items-center mt-10 mb-32 px-10 w-full">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {/* Card 1 */}
+              <div className="bg-[#dbdbdb] shadow-md rounded-lg p-6">
+                <h2 className="text-2xl font-bold text-gray-800">Service 1</h2>
+                <p className="text-gray-600 mt-2">
+                  Brief description of the service or feature.
+                </p>
+                <button className="mt-4 bg-[#002D62] text-white p-2 px-4 rounded-md hover:bg-[#001f4d]">
+                  Learn More
+                </button>
+              </div>
+
+              {/* Card 2 */}
+              <div className="bg-[#dbdbdb] shadow-md rounded-lg p-6">
+                <h2 className="text-2xl font-bold text-gray-800">Service 2</h2>
+                <p className="text-gray-600 mt-2">
+                  Brief description of the service or feature.
+                </p>
+                <button className="mt-4 bg-[#002D62] text-white p-2 px-4 rounded-md hover:bg-[#001f4d]">
+                  Learn More
+                </button>
+              </div>
+
+              {/* Card 3 */}
+              <div className="bg-[#dbdbdb] shadow-md rounded-lg p-6">
+                <h2 className="text-2xl font-bold text-gray-800">Service 3</h2>
+                <p className="text-gray-600 mt-2">
+                  Brief description of the service or feature.
+                </p>
+                <button className="mt-4 bg-[#002D62] text-white p-2 px-4 rounded-md hover:bg-[#001f4d]">
+                  Learn More
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div className='flex justify-between items-center'>
-        <h1 className='text-3xl my-8'>List of Inquiries</h1>
-        <Link to='/inquiry/create'>
-          <MdOutlineAddBox className='text-sky-800 text-4xl' />
-        </Link>
-      </div>
-      {loading ? (
-        <Spinner />
-      ) : showType === 'table' ? (
-        <InquiryTable inquiry={inquiry} />
-      ) : (
-        <InquiryCard inquiry={inquiry} />
-      )}
-      <Footer/>
+
+      <Footer />
     </div>
   );
 };
 
-export default UserHome;
+export default Home;

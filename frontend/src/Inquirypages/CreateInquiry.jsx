@@ -31,7 +31,7 @@ const CreateInquiry = () => {
       .then(() => {
         setLoading(false);
         enqueueSnackbar('Inquiry Created successfully', { variant: 'success' });
-        navigate('/');
+        navigate('/user/home');
       })
       .catch((error) => {
         setLoading(false);
@@ -43,10 +43,10 @@ const CreateInquiry = () => {
   return (
     <div className='p-4'>
       <Navbar />
-      <BackButton />
-      <h1 className='text-3xl my-4'>Create Inquiry</h1>
+      {/* <BackButton /> */}
+      <h1 className='text-3xl mt-28 mb-7 text-center'>SLIIT Student Support</h1>
       {loading ? <Spinner /> : ''}
-      <div className='flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto'>
+      <div className='flex flex-col border-2 mb-32 border-braves-navy rounded-xl w-[600px] p-4 mx-auto'>
         <div className='my-4'>
           <label className='text-xl mr-4 text-gray-500'>Request Type</label>
           <select
@@ -110,9 +110,12 @@ const CreateInquiry = () => {
           />
           <option value="" disabled>Detailed description of the issue</option>
         </div>
-        <button className='p-2 bg-sky-300 m-8' onClick={handleSaveInquiry}>
-          Save
-        </button>
+        <button
+            className="p-2 w-full  text-white bg-[#13274F] border-2 border-braves-navy font-bold rounded-full transition-all duration-300 ease-in-out"
+            onClick={handleSaveInquiry}
+          >
+            Submit
+          </button>
       </div>
       <Footer />
     </div>

@@ -6,6 +6,9 @@ import Footer from "../components/Footer";
 import Spinner from "../components/Spinner";
 import axios from "axios";
 import SLIITImage from "../assets/SLIIT.jpg";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+
+
 
 const UserLogin = () => {
   const [email, setemail] = useState("");
@@ -19,30 +22,36 @@ const UserLogin = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    setLoading(true);  // Start loading spinner
+    setLoading(true); // Start loading spinner
 
     axios
-        .post('http://localhost:5555/login', { email, password })
-        .then(res => {
-            setLoading(false);  // Stop loading spinner
-            if (res.data === "Login successful") {
-                enqueueSnackbar("Login Successful", { variant: "success" });
-                console.log(res.data);
-                navigate("/user/home");
-            } else {
-                enqueueSnackbar(res.data, { variant: "error" }); // Display error message (like incorrect password or no user)
-            }
-        })
-        .catch((error) => {
-            setLoading(false);  // Stop loading spinner
-            if (error.response && error.response.status === 404) {
-                enqueueSnackbar("No record existed", { variant: "error" }); // Show custom message when no user exists
-            } else {
-                enqueueSnackbar("Error occurred while login", { variant: "error" });
-            }
-            console.error(error);
-        });
-};
+      .post("http://localhost:5555/login", { email, password })
+      .then((res) => {
+        setLoading(false); // Stop loading spinner
+        if (res.data.status === "Success") {
+          if (res.data.role === "admin") {
+            enqueueSnackbar("Login Successful", { variant: "success" });
+            console.log(res.data);
+            navigate("/admin/home");
+          } else {
+            enqueueSnackbar("Login Successful", { variant: "success" });
+            console.log(res.data);
+            navigate("/user/home");
+          }
+        } else {
+          enqueueSnackbar(res.data, { variant: "error" }); // Display error message (like incorrect password or no user)
+        }
+      })
+      .catch((error) => {
+        setLoading(false); // Stop loading spinner
+        if (error.response && error.response.status === 404) {
+          enqueueSnackbar("This user doesn't exist", { variant: "error" }); // Show custom message when no user exists
+        } else {
+          enqueueSnackbar("Error occurred while login", { variant: "error" });
+        }
+        console.error(error);
+      });
+  };
 
   return (
     <div className="min-h-screen flex flex-col mt-16">
@@ -85,6 +94,17 @@ const UserLogin = () => {
                 className="border-2 border-gray-500 px-4 py-2 w-full"
                 placeholder="Enter your Password"
               />
+              <button
+                type="button"
+                onClick={() => setPasswordVisible(!passwordVisible)}
+                className="absolute inset-y-0 right-3 flex items-center text-gray-600"
+              >
+                {passwordVisible ? (
+                  <FaEyeSlash size={20} />
+                ) : (
+                  <FaEye size={20} />
+                )}
+              </button>
             </div>
           </div>
 
