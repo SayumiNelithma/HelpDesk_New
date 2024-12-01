@@ -4,8 +4,9 @@ import Spinner from '../components/Spinner';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
-import Navbar from '../components/Navbar';
+import NavbarTwo from '../components/NavbarTwo';
 import Footer from '../components/Footer';
+import SLIITImage from "../assets/SLIIT.jpg";
 
 const CreateInquiry = () => {
   const [requestType, setrequestType] = useState('');
@@ -42,7 +43,17 @@ const CreateInquiry = () => {
 
   return (
     <div className='p-4'>
-      <Navbar />
+      <NavbarTwo />
+      <div
+        className="absolute top-0 left-0 w-full h-full bg-cover bg-center"
+        style={{
+          backgroundImage: `url(${SLIITImage})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          opacity: 0.3,
+          zIndex: -1,
+        }}
+      ></div>
       {/* <BackButton /> */}
       <h1 className='text-3xl mt-28 mb-7 text-center'>SLIIT Student Support</h1>
       {loading ? <Spinner /> : ''}

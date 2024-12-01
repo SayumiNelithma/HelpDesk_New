@@ -4,11 +4,11 @@ import Spinner from "../components/Spinner";
 import { Link, useNavigate } from "react-router-dom";
 import InquiryTable from "../components/home/InquiryTable";
 import InquiryCard from "../components/home/InquiryCard";
-import Navbar from "../components/Navbar";
+import NavbarTwo from "../components/NavbarTwo";
 import Footer from "../components/Footer";
 import SLIITImage from "../assets/SLIIT.jpg";
 
-const UserHome = () => {
+const MyInquiries = () => {
   const [inquiry, setInquiry] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showType, setShowType] = useState("table");
@@ -40,7 +40,7 @@ const UserHome = () => {
           zIndex: -1,
         }}
       ></div>
-      <Navbar />
+      <NavbarTwo />
       <div className="flex-grow p-4 mt-32 mb-32 mr-8">
         <div className="flex justify-between items-center">
           <h1 className="text-3xl mb-8 mt-6">My Inquiries</h1>
@@ -87,4 +87,4 @@ const UserHome = () => {
   );
 };
 
-export default UserHome;
+export default MyInquiries;

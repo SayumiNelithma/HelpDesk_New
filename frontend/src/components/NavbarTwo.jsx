@@ -1,29 +1,37 @@
 import React from "react";
-import { FaUserCircle } from "react-icons/fa"; 
+import { Link, useNavigate } from "react-router-dom";
+import { FaUserCircle } from "react-icons/fa";
 
-const Navbar = () => {
+const NavbarTwo = ({ isSidebarOpen }) => {
   return (
-    <header style={styles.header}>
+    <header
+      style={{
+        ...styles.header,
+        transform: isSidebarOpen ? "translateX(250px)" : "translateX(0)",
+      }}
+    >
       <div style={styles.container}>
-        
         <h1 style={styles.title}>Support Desk</h1>
-
-        
         <nav style={styles.navList}>
-          <a href="#home" style={styles.navLink}>
+          <a href="/user/home" style={styles.navLink}>
             Home
           </a>
-          <a href="#services" style={styles.navLink}>
+          <a href="/user/services" style={styles.navLink}>
             Services
           </a>
-          <a href="#about-us" style={styles.navLink}>
+          <a href="/user/aboutus" style={styles.navLink}>
             About Us
           </a>
         </nav>
-
-        {/* Profile Icon */}
         <div style={styles.rightSection}>
-          <FaUserCircle style={styles.profileIcon} />
+          <Link to="/login">
+            <button
+              className="bg-[#3258a3] text-white font-semibold hover:bg-sky-600 px-6 py-3 rounded-sm"
+              //onClick={() => setShowType("card")}
+            >
+              Log out
+            </button>
+          </Link>
         </div>
       </div>
     </header>
@@ -41,6 +49,7 @@ const styles = {
     width: "100%",
     boxSizing: "border-box",
     zIndex: 1000,
+    transition: "transform 0.3s ease-in-out",
   },
   container: {
     width: "100%",
@@ -58,7 +67,6 @@ const styles = {
   navList: {
     display: "flex",
     gap: "40px",
-    marginLeft: "500px",
   },
   navLink: {
     color: "#fff",
@@ -68,14 +76,10 @@ const styles = {
     cursor: "pointer",
     transition: "color 0.3s",
   },
-  navLinkHover: {
-    color: "#cce7ff", // Lighter color on hover
-  },
   profileIcon: {
-    fontSize: "30px", // Size of the user profile icon
+    fontSize: "30px",
     color: "#fff",
     cursor: "pointer",
-    transition: "transform 0.3s",
   },
   rightSection: {
     display: "flex",
@@ -84,4 +88,4 @@ const styles = {
   },
 };
 
-export default Navbar;
+export default NavbarTwo;

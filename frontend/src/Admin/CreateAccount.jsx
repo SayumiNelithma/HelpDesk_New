@@ -4,8 +4,8 @@ import Spinner from "../components/Spinner";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useSnackbar } from "notistack";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import NavbarAdmin from "../components/NavbarAdmin";
+import Sidebar from "../components/Sidebar";
 import SLIITImage from "../assets/SLIIT.jpg";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
@@ -19,32 +19,7 @@ const CreateAccount = () => {
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
   const [passwordVisible, setPasswordVisible] = useState(false);
-
-  // const handleSaveAccount = () => {
-  //     const data = {
-  //         fullname,
-  //         email,
-  //         USERNAME,
-  //         PASSWORD,
-  //         role,
-  //     };
-
-  //     setLoading(true);
-  //     axios
-  //         .post("http://localhost:5555/account", data)
-  //         .then(() => {
-  //             setLoading(false);
-  //             enqueueSnackbar("Account Created Successfully", { variant: "success" });
-  //             navigate("/admin/home");
-  //         })
-  //         .catch((error) => {
-  //             setLoading(false);
-  //             enqueueSnackbar("Error occurred while creating account", {
-  //                 variant: "error",
-  //             });
-  //             console.error(error);
-  //         });
-  // };
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const handleSaveAccount = (e) => {
     e.preventDefault();
@@ -53,7 +28,7 @@ const CreateAccount = () => {
       .then((res) => {
         setLoading(false);
         enqueueSnackbar("Account Created Successfully", { variant: "success" });
-        navigate("/login");
+        navigate("/admin/home");
       })
       .catch((error) => {
         setLoading(false);
@@ -64,9 +39,18 @@ const CreateAccount = () => {
       });
   };
 
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   return (
     <div className="relative min-h-screen flex flex-col">
-      <Navbar />
+
+      {/* Navbar with Sidebar Toggle */}
+      <NavbarAdmin isSidebarOpen={isSidebarOpen} />
+
+      {/* Sidebar Component */}
+      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
       {/* Full-Screen Background Image */}
       <div
         className="absolute top-0 left-0 w-full h-full bg-cover bg-center"
@@ -80,6 +64,8 @@ const CreateAccount = () => {
       ></div>
 
       {loading && <Spinner />}
+
+      <BackButton/>
 
       {/* Content */}
       <div className="flex flex-grow justify-center items-center mt-20">
@@ -160,7 +146,7 @@ const CreateAccount = () => {
           </div>
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

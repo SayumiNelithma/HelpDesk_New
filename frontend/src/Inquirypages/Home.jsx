@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/NavbarOne";
 import Footer from "../components/Footer";
 import SLIITImage from "../assets/SLIIT.jpg";
 
@@ -62,7 +62,8 @@ const Home = () => {
             <div className="bg-[#dbdbdb] shadow-md rounded-lg p-6">
               <h2 className="text-2xl font-bold text-gray-800">Service 1</h2>
               <p className="text-gray-600 mt-2">
-                Brief description of the service or feature.
+                Brief description of the service or feature.Brief description of the service or feature.Brief description of the service or feature.
+                Brief description of the service or feature.Brief description of the service or feature.Brief description of the service or feature.
               </p>
               <button className="mt-4 bg-[#002D62] text-white p-2 px-4 rounded-md hover:bg-[#001f4d]">
                 Learn More
@@ -73,7 +74,8 @@ const Home = () => {
             <div className="bg-[#dbdbdb] shadow-md rounded-lg p-6">
               <h2 className="text-2xl font-bold text-gray-800">Service 2</h2>
               <p className="text-gray-600 mt-2">
-                Brief description of the service or feature.
+                Brief description of the service or feature.Brief description of the service or feature.Brief description of the service or feature.
+                Brief description of the service or feature.Brief description of the service or feature.Brief description of the service or feature.
               </p>
               <button className="mt-4 bg-[#002D62] text-white p-2 px-4 rounded-md hover:bg-[#001f4d]">
                 Learn More
@@ -84,7 +86,8 @@ const Home = () => {
             <div className="bg-[#dbdbdb] shadow-md rounded-lg p-6">
               <h2 className="text-2xl font-bold text-gray-800">Service 3</h2>
               <p className="text-gray-600 mt-2">
-                Brief description of the service or feature.
+                Brief description of the service or feature.Brief description of the service or feature.Brief description of the service or feature.
+                Brief description of the service or feature.Brief description of the service or feature.Brief description of the service or feature.
               </p>
               <button className="mt-4 bg-[#002D62] text-white p-2 px-4 rounded-md hover:bg-[#001f4d]">
                 Learn More

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSnackbar } from "notistack";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/NavbarOne";
 import Footer from "../components/Footer";
 import Spinner from "../components/Spinner";
 import axios from "axios";
@@ -124,7 +124,7 @@ const UserLogin = () => {
             Login
           </button>
 
-          <div className="mt-4 text-center">
+          {/* <div className="mt-4 text-center">
             <p>
               <span>Don't have an account? </span>
               <button
@@ -134,7 +134,7 @@ const UserLogin = () => {
                 Signup
               </button>
             </p>
-          </div>
+          </div> */}
         </div>
       </div>
 

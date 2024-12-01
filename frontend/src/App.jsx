@@ -14,6 +14,11 @@ import DeleteInquiry from './Inquirypages/DeleteInquiry';
 
 import UserLogin from './User/UserLogin';
 import UserHome from './User/UserHome';
+import MyInquiries from './User/MyInquiries';
+import AboutUs from './User/AboutUs';
+import Services from './User/Services';
+import ContactUs from './User/ContactUs';
+
 
 const App = () => {
   return (
@@ -33,6 +38,11 @@ const App = () => {
       
       <Route path='/login' element={<UserLogin />} />
       <Route path='/user/home' element={<UserHome />} />
+      <Route path='/user/myinquiries' element={<MyInquiries />} />
+      <Route path='/user/aboutus' element={<AboutUs />} />
+      <Route path='/user/services' element={<Services />} />
+      <Route path='/user/contactus' element={<ContactUs />} />
+
       
     </Routes>
   );

@@ -15,7 +15,7 @@ const Footer = () => {
           <a href="/terms" style={styles.link}>
             Terms of Service
           </a>
-          <a href="/contact" style={styles.link}>
+          <a href="/user/contactus" style={styles.link}>
             Contact Us
           </a>
         </div>

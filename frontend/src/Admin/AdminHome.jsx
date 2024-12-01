@@ -1,57 +1,75 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import NavbarAdmin from "../components/NavbarAdmin";
+//import Footer from "../components/Footer";
+import Sidebar from "../components/Sidebar";
 import SLIITImage from "../assets/SLIIT.jpg";
 
 const Home = () => {
   const navigate = useNavigate();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  // Define handleLogin function
-  const handleAdd = () => {
-    // You can add logic here to handle login, for example:
-    navigate("/account/create");
+  const handleSearch = (e) => {
+    e.preventDefault();
+    navigate(`/search?q=${searchTerm}`);
+  };
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
   };
 
   return (
     <div className="flex flex-col min-h-screen relative">
-      {/* Background Image with transparency */}
+      {/* Background Image with Transparency */}
       <div
         className="absolute top-0 left-0 w-full h-full bg-cover bg-center"
         style={{
           backgroundImage: `url(${SLIITImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          opacity: 0.3, // Decrease opacity for background image
-          zIndex: -1, // Ensure image stays behind the content
+          opacity: 0.3,
+          zIndex: -1,
         }}
       ></div>
 
       <div
         className="absolute top-0 left-0 w-full h-full bg-black opacity-30"
         style={{
-          zIndex: -1, // Keeps the overlay behind the content
+          zIndex: -1,
         }}
       ></div>
 
-      <Navbar />
-      <div className="flex flex-1 justify-center items-center mt-3">
+      {/* Navbar with Sidebar Toggle */}
+      <NavbarAdmin isSidebarOpen={isSidebarOpen} />
+
+      {/* Sidebar Component */}
+      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+
+      {/* Page Content */}
+      <div
+        className="flex flex-1 flex-col items-center mt-48"
+        style={{
+          marginLeft: isSidebarOpen ? "250px" : "0",
+          transition: "margin-left 0.3s ease-in-out",
+        }}
+      >
         <div className="flex flex-col gap-y-10 items-center">
-          {" "}
-          {/* Increased gap here */}
           
-          
-          <button
-            className="bg-[#002D62] text-white border-none p-2 px-5 rounded-md cursor-pointer text-lg font-semibold 
-                       hover:bg-[#001f4d] transition duration-300 ease-in-out transform m-8"
-            onClick={handleAdd}
-          >
-            Add Users
-          </button>
+          {/* Add User Button */}
+          <div className="mt-4 flex justify-end">
+            <Link to="/user">
+              <button
+                className="bg-[#3258a3] text-white font-semibold hover:bg-sky-600 px-6 py-3 rounded-sm"
+              >
+                Add new users
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
 
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
