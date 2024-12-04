@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FaUserCircle } from "react-icons/fa";
+import ProfileImage from "../assets/Profile.jpg";
 
 const NavbarTwo = ({ isSidebarOpen }) => {
+  const [showMenu, setShowMenu] = useState(false);
+  const [token, setToken] = useState(true);
+  
+  const navigate = useNavigate(); 
+
+  const toggleMenu = () => {
+    setShowMenu(!showMenu);
+  };
+
+  const handleLogout = () => {
+    setToken(false); 
+    navigate("/login"); 
+  };
+
   return (
     <header
       style={{
@@ -11,7 +25,12 @@ const NavbarTwo = ({ isSidebarOpen }) => {
       }}
     >
       <div style={styles.container}>
-        <h1 style={styles.title}>Support Desk</h1>
+        <h1 style={styles.title}>
+          <a href="/user/home" style={{ textDecoration: "none", color: "inherit" }}>
+            Support Desk
+          </a>
+        </h1>
+
         <nav style={styles.navList}>
           <a href="/user/home" style={styles.navLink}>
             Home
@@ -24,14 +43,33 @@ const NavbarTwo = ({ isSidebarOpen }) => {
           </a>
         </nav>
         <div style={styles.rightSection}>
-          <Link to="/login">
-            <button
-              className="bg-[#3258a3] text-white font-semibold hover:bg-sky-600 px-6 py-3 rounded-sm"
-              //onClick={() => setShowType("card")}
-            >
-              Log out
-            </button>
-          </Link>
+          {token ? (
+            <div style={styles.profileContainer}>
+              <img
+                src={ProfileImage}
+                alt="Profile"
+                style={styles.profileImage}
+                onClick={toggleMenu} // Show/hide the menu when clicked
+              />
+              {showMenu && (
+                <div style={styles.dropdownMenu}>
+                  <Link to="/user/myprofile" style={styles.dropdownItem}>My Profile</Link>
+                  <button
+                    onClick={handleLogout} // Call the handleLogout function on click
+                    style={styles.logoutItem}
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <Link to="/login">
+              <button className="bg-[#3258a3] text-white font-semibold hover:bg-sky-600 px-6 py-3 rounded-sm">
+                Account
+              </button>
+            </Link>
+          )}
         </div>
       </div>
     </header>
@@ -76,15 +114,49 @@ const styles = {
     cursor: "pointer",
     transition: "color 0.3s",
   },
-  profileIcon: {
-    fontSize: "30px",
-    color: "#fff",
-    cursor: "pointer",
-  },
   rightSection: {
     display: "flex",
     alignItems: "center",
     justifyContent: "flex-end",
+  },
+  profileContainer: {
+    position: "relative",
+  },
+  profileImage: {
+    width: 40,
+    height: 40,
+    borderRadius: "50%",
+    cursor: "pointer",
+  },
+  dropdownMenu: {
+    position: "absolute",
+    top: "50px",
+    right: 0,
+    backgroundColor: "#fff",
+    borderRadius: "8px",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+    padding: "10px 0",
+    zIndex: 100,
+  },
+  dropdownItem: {
+    display: "block",
+    padding: "8px 16px",
+    textDecoration: "none",
+    color: "#333",
+    fontSize: "16px",
+    cursor: "pointer",
+    transition: "background-color 0.2s",
+  },
+  logoutItem: {
+    display: "block",
+    padding: "8px 16px",
+    textDecoration: "none",
+    color: "red",
+    fontWeight: "bold",
+    backgroundColor: "transparent",
+    border: "none",
+    cursor: "pointer",
+    transition: "background-color 0.2s",
   },
 };
 

@@ -2,6 +2,8 @@ import mongoose from 'mongoose';
 
 // Define the schema for the inquiry model
 const inquirySchema = new mongoose.Schema({
+
+
     requestType: {
         type: String,
         required: true,
@@ -39,11 +41,24 @@ const inquirySchema = new mongoose.Schema({
         type: String,
         required: true,
       },
+
+      status: {
+        type: String,
+        default: "pending",
+
+      },
+
+      createdAt: { 
+        type: Date, 
+        default: Date.now,
+      },
+
 },
+
 { timestamps: true }
 );
 
-// Create the Book model
+
 const Inquiry = mongoose.model('Inquiry', inquirySchema);
 
 export default Inquiry;

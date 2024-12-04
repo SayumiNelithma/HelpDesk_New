@@ -23,7 +23,7 @@ const Home = () => {
           backgroundImage: `url(${SLIITImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          opacity: 0.2,
+          opacity: 0.3,
           zIndex: -1,
         }}
       ></div>

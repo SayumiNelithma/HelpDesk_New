@@ -3,7 +3,7 @@ import { AiOutlineEdit } from 'react-icons/ai';
 import { BsInfoCircle } from 'react-icons/bs';
 import { MdOutlineAddBox, MdOutlineDelete } from 'react-icons/md';
 
-const InquiryTable = ({ inquiry }) => {
+const InquiryTable_Approver = ({ inquiry }) => {
   return (
     <table className='w-full border-separate border-spacing-2'>
       <thead>
@@ -15,8 +15,8 @@ const InquiryTable = ({ inquiry }) => {
           <th className='border border-slate-600 rounded-md max-md:hidden'>Subject</th>
           <th className='border border-slate-600 rounded-md max-md:hidden'>Description</th>
           <th className='border border-slate-600 rounded-md max-md:hidden'>Status</th>
-          {/* <th className='border border-slate-600 rounded-md max-md:hidden'>Status</th> */}
 
+          {/* <th className='border border-slate-600 rounded-md'>Operations</th> */}
         </tr>
       </thead>
       <tbody>
@@ -45,15 +45,15 @@ const InquiryTable = ({ inquiry }) => {
             </td>
             <td className='border border-slate-700 rounded-md text-center'>
               <div className='flex justify-center gap-x-4'>
-                <Link to={`/inquiry/details/${inquiry._id}`}>
+                <Link to={`/approver/viewinquiry/${inquiry._id}`}>
                   <BsInfoCircle className='text-2xl text-green-800' />
                 </Link>
                 {/* <Link to={`/inquiry/edit/${inquiry._id}`}>
                   <AiOutlineEdit className='text-2xl text-yellow-600' />
                 </Link> */}
-                {/* <Link to={`/inquiry/delete/${inquiry._id}`}>
+                <Link to={`/inquiry/delete/${inquiry._id}`}>
                   <MdOutlineDelete className='text-2xl text-red-600' />
-                </Link> */}
+                </Link>
               </div>
             </td>
           </tr>
@@ -63,4 +63,4 @@ const InquiryTable = ({ inquiry }) => {
   );
 };
 
-export default InquiryTable;
+export default InquiryTable_Approver;

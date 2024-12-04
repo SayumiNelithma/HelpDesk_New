@@ -1,24 +1,23 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
-import Spinner from "../components/Spinner";
-import NavbarTwo from "../components/NavbarTwo";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { useNavigate, Link, useParams } from "react-router-dom";
+import Spinner from '../components/Spinner';
+import NavbarAdmin from "../components/NavbarAdmin";
+import Sidebar from '../components/Sidebar';
 
 axios.defaults.withCredentials = true;
 
-const ShowInquiry = () => {
+const ViewInquiry = () => {
   const [inquiry, setInquiry] = useState({});
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:5555/inquiry/details/${id}`, {
-        withCredentials: true,
-      })
+      .get(`http://localhost:5555/inquiry/details/${id}`, { withCredentials: true })
       .then((response) => {
         setInquiry(response.data.inquiry);
         setLoading(false);
@@ -33,13 +32,25 @@ const ShowInquiry = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
+  const handleApprove = () => {
+    navigate(`/approver/home`); 
+  };
+
+  const handleReject = () => {
+    navigate(`/approver/home`); 
+  };
+
   return (
     <div className="p-4 mt-24">
-      <NavbarTwo />
+      {/* Navbar with Sidebar Toggle */}
+      <NavbarAdmin isSidebarOpen={isSidebarOpen} />
+      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
 
-      <div className="button">
-        <Link to={`/user/myinquiries`}>
-          <button>Back</button>
+      <div className="button mb-4">
+        <Link to={`/approver/home`}>
+          <button className="bg-sky-600 text-white px-4 py-2 rounded-md hover:bg-sky-700">
+            Back
+          </button>
         </Link>
       </div>
 
@@ -82,8 +93,24 @@ const ShowInquiry = () => {
           </div>
         </div>
       )}
+
+      {/* Bottom-Right Buttons */}
+      <div className="fixed bottom-4 right-4 flex space-x-4">
+        <button
+          className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700"
+          onClick={handleApprove}
+        >
+          Approve
+        </button>
+        <button
+          className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700"
+          onClick={handleReject}
+        >
+          Reject
+        </button>
+      </div>
     </div>
   );
 };
 
-export default ShowInquiry;
+export default ViewInquiry;

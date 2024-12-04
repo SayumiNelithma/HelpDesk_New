@@ -2,17 +2,19 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Spinner from "../components/Spinner";
 import { Link, useNavigate } from "react-router-dom";
-import InquiryTable from "../components/home/InquiryTable";
+import InquiryTable_Approver from "./InquiryTable_approver"
 import InquiryCard from "../components/home/InquiryCard";
-import NavbarTwo from "../components/NavbarTwo";
-import Footer from "../components/Footer";
+import NavbarAdmin from "../components/NavbarAdmin";
+import Sidebar from "../components/Sidebar";
+//import Footer from "../components/Footer";
 import SLIITImage from "../assets/SLIIT.jpg";
 
-const MyInquiries = () => {
+const InquiryList = () => {
   const [inquiry, setInquiry] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showType, setShowType] = useState("table");
   const navigate = useNavigate();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -28,6 +30,10 @@ const MyInquiries = () => {
       });
   }, []);
 
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
       <div
@@ -40,21 +46,19 @@ const MyInquiries = () => {
           zIndex: -1,
         }}
       ></div>
-      <NavbarTwo />
-      <div className="flex-grow p-4 mt-32 mr-8">
+      {/* Navbar with Sidebar Toggle */}
+      <NavbarAdmin isSidebarOpen={isSidebarOpen} />
 
-      <div className="flex justify-end">
+      {/* Sidebar Component */}
+      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+      <div className="flex-grow p-4 mt-20 mr-8">
+        <div className="flex justify-between items-center">
+          <h1 className="text-3xl mb-8 mt-6">Pending Inquiries</h1>
+
+          <div className="flex justify-end">
           <div className="flex space-x-4">
-            <Link to="/inquiry/create">
-              <button
-                className="bg-[#3258a3] text-white font-semibold hover:bg-sky-600 px-6 py-3 rounded-sm"
-                onClick={() => setShowType("card")}
-              >
-                Submit a new Inquiry
-              </button>
-            </Link>
 
-            <Link to="/user/myinquiries/resolvedinquiries">
+            <Link to="/approver/resolvedinquiries">
               <button
                 className="bg-[#2e902c] text-white font-semibold hover:bg-green-600 px-6 py-3 rounded-sm"
                 onClick={() => setShowType("card")}
@@ -63,7 +67,7 @@ const MyInquiries = () => {
               </button>
             </Link>
 
-            <Link to="/user/myinquiries/rejectedinquiries">
+            <Link to="/approver/rejectedinquiries">
               <button
                 className="bg-[#912626] text-white font-semibold hover:bg-red-600 px-6 py-3 rounded-sm"
                 onClick={() => setShowType("card")}
@@ -71,23 +75,20 @@ const MyInquiries = () => {
                 Rejected Inquiries
               </button>
             </Link>
+            
           </div>
         </div>
-
-        <div className="flex justify-between items-center">
-          <h1 className="text-3xl  ">My Inquiries</h1>
         </div>
 
-        {/* Submit button placed on the right side, between the header and service card */}
         
 
-        <div className="flex gap-6 mt-10">
+        <div className="flex gap-6 mt-8">
           {/* White background container */}
           <div className="bg-white shadow-lg rounded-lg p-6 flex-1 mt-0">
             {loading ? (
               <Spinner />
             ) : showType === "table" ? (
-              <InquiryTable inquiry={inquiry} />
+              <InquiryTable_Approver inquiry={inquiry} />
             ) : (
               <InquiryCard inquiry={inquiry} />
             )}
@@ -97,16 +98,17 @@ const MyInquiries = () => {
           {/* <div className="bg-[#dbdbdb] shadow-md rounded-lg p-6 w-60">
             <h2 className="text-2xl font-bold text-gray-800">Service 1</h2>
             <p className="text-gray-600 mt-2">
-              Brief description of the service or feature. This is a detailed
-              description of the service offered.
+              Brief description of the service or feature. This is a detailed description of the service offered.
             </p>
-            <Link className="underline">Learn More</Link>
+            <Link className="underline">
+              Learn More
+            </Link>
           </div> */}
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
 
-export default MyInquiries;
+export default InquiryList;

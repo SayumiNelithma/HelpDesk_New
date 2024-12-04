@@ -11,10 +11,11 @@ router.post('/', async (request, response) => {
             !request.body.requestDate ||
             !request.body.priority ||
             !request.body.subject ||
-            !request.body.description 
+            !request.body.description ||
+            !request.body.status
         ) {
             return response.status(400).send({
-                message: 'Send all required fields: requestType, requestDate, priority, subject, description',
+                message: 'Send all required fields: requestType, requestDate, priority, subject, description, status',
             });
         }
         const newInquiry = {
@@ -23,6 +24,8 @@ router.post('/', async (request, response) => {
             priority: request.body.priority,
             subject: request.body.subject,
             description: request.body.description,
+            status: request.body.status,
+            
         };
 
         const inquiry = await Inquiry.create(newInquiry);
@@ -70,7 +73,28 @@ router.get('/:id', async (request, response) => {
     }
 });
 
-//route for update a book
+//********** */
+// Update inquiry status to Resolved
+router.put('/:id/resolve', async (req, res) => {
+    try {
+        const inquiry = await Inquiry.findByIdAndUpdate(req.params.id, { status: 'Resolved' }, { new: true });
+        res.status(200).json(inquiry);
+    } catch (err) {
+        res.status(500).json({ error: 'Failed to update status to Resolved' });
+    }
+});
+
+// Update inquiry status to Rejected
+router.put('/:id/reject', async (req, res) => {
+    try {
+        const inquiry = await Inquiry.findByIdAndUpdate(req.params.id, { status: 'Rejected' }, { new: true });
+        res.status(200).json(inquiry);
+    } catch (err) {
+        res.status(500).json({ error: 'Failed to update status to Rejected' });
+    }
+});
+//************ */
+
 router.put('/:id', async (request, response) => {
     try {
         if (
@@ -78,10 +102,12 @@ router.put('/:id', async (request, response) => {
             !request.body.requestDate ||
             !request.body.priority ||
             !request.body.subject ||
-            !request.body.description
+            !request.body.description ||
+            !request.body.status
+
         ) {
             return response.status(400).send({
-                message: 'Send all required fields: requestType, requestDate, priority, subject, description',
+                message: 'Send all required fields: requestType, requestDate, priority, subject, description, status',
             });
         }
 

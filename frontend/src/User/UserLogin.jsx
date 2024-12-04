@@ -8,8 +8,6 @@ import axios from "axios";
 import SLIITImage from "../assets/SLIIT.jpg";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
-
-
 const UserLogin = () => {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
@@ -33,6 +31,10 @@ const UserLogin = () => {
             enqueueSnackbar("Login Successful", { variant: "success" });
             console.log(res.data);
             navigate("/admin/home");
+          } else if(res.data.role === "approver") {
+            enqueueSnackbar("Login Successful", { variant: "success" });
+            console.log(res.data);
+            navigate("/approver/home");
           } else {
             enqueueSnackbar("Login Successful", { variant: "success" });
             console.log(res.data);

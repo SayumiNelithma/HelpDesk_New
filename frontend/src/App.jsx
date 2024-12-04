@@ -18,6 +18,18 @@ import MyInquiries from './User/MyInquiries';
 import AboutUs from './User/AboutUs';
 import Services from './User/Services';
 import ContactUs from './User/ContactUs';
+import Resolved from './User/Resolved';
+import Rejected from './User/Rejected';
+
+import ApproverHome from './Approver/ApproverHome';
+import CreateResponse from './Approver/CreateResponse';
+import ViewInquiry from './Approver/ViewInquiry';
+import InquiryList from './Approver/InquiryList';
+import RejectedInquiries from './Approver/RejectedInquiries';
+import ResolvedInquiries from './Approver/ResolvedInquiries';
+import MyProfile from './User/MyProfile';
+
+
 
 
 const App = () => {
@@ -30,7 +42,7 @@ const App = () => {
       <Route path='/admin/home' element={<AdminHome />} />
 
       <Route path='/inquiry/create' element={<CreateInquiry />} />
-      <Route path='/inquiry/details/:id' element={<ShowInquiry />} />
+      <Route path='/inquiry/details/:id' element={<ShowInquiry />} /> 
       <Route path='/inquiry/edit/:id' element={<EditInquiry />} />
       <Route path='/inquiry/delete/:id' element={<DeleteInquiry />} />
 
@@ -38,10 +50,26 @@ const App = () => {
       
       <Route path='/login' element={<UserLogin />} />
       <Route path='/user/home' element={<UserHome />} />
+      <Route path='/user/myprofile' element={<MyProfile />} />
       <Route path='/user/myinquiries' element={<MyInquiries />} />
       <Route path='/user/aboutus' element={<AboutUs />} />
       <Route path='/user/services' element={<Services />} />
       <Route path='/user/contactus' element={<ContactUs />} />
+      <Route path='/user/myinquiries/resolvedinquiries' element={<Resolved />} />
+      <Route path='/user/myinquiries/rejectedinquiries' element={<Rejected />} />
+
+
+
+      <Route path='/approver/home' element={<ApproverHome />} />
+      <Route path='/approver/createresponse' element={<CreateResponse />} />
+      <Route path='/approver/viewinquiry/:id' element={<ViewInquiry />} />
+      <Route path='/approver/inquirylist' element={<InquiryList />} />
+      <Route path='/approver/rejectedinquiries' element={<RejectedInquiries />} />
+      <Route path='/approver/resolvedinquiries' element={<ResolvedInquiries />} />
+
+
+
+
 
       
     </Routes>

@@ -1,5 +1,7 @@
 import React from "react";
 import { FaUserCircle } from "react-icons/fa";
+//import {assets} from '../assets/Profile.jpg'
+//import {NavLink} from 'react-router-dom'
 
 const NavbarOne = ({ isSidebarOpen }) => {
   return (
@@ -24,6 +26,7 @@ const NavbarOne = ({ isSidebarOpen }) => {
         </nav>
         <div style={styles.rightSection}>
           <FaUserCircle style={styles.profileIcon} />
+         
         </div>
       </div>
     </header>

@@ -17,34 +17,34 @@ const DeleteInquiry = () => {
       .delete(`http://localhost:5555/inquiry/${id}`)
       .then(() => {
         setLoading(false);
-        enqueueSnackbar('Inquiry Deleted successfully', { variant: 'success' });
-        navigate('/');
+        enqueueSnackbar('Inquiry deleted successfully', { variant: 'success' });
+        navigate('/approver/home'); // Corrected navigation path
       })
       .catch((error) => {
         setLoading(false);
-        // alert('An error happened. Please Chack console');
-        enqueueSnackbar('Error', { variant: 'error' });
+        enqueueSnackbar('Error deleting inquiry', { variant: 'error' });
         console.log(error);
       });
   };
-  
+
   return (
-    <div className='p-4'>
+    <div className="p-4">
       <BackButton />
-      <h1 className='text-3xl my-4'>Delete Inquiry</h1>
-      {loading ? <Spinner /> : ''}
-      <div className='flex flex-col items-center border-2 border-sky-400 rounded-xl w-[600px] p-8 mx-auto'>
-        <h3 className='text-2xl'>Are You Sure You want to delete this Inquiry?</h3>
+      <h1 className="text-3xl my-4">Delete Inquiry</h1>
+      {loading && <Spinner />}
+      <div className="flex flex-col items-center border-2 border-sky-400 rounded-xl w-[600px] p-8 mx-auto">
+        <h3 className="text-2xl">Are you sure you want to delete this inquiry?</h3>
 
         <button
-          className='p-4 bg-red-600 text-white m-8 w-full'
+          className="p-4 bg-red-600 text-white m-8 w-full hover:bg-red-700 rounded-md"
           onClick={handleDeleteInquiry}
+          disabled={loading} // Disable button during loading to prevent multiple requests
         >
-          Yes, Delete it
+          {loading ? 'Deleting...' : 'Yes, Delete it'}
         </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default DeleteInquiry;
