@@ -25,6 +25,7 @@ const CreateInquiry = () => {
       priority,
       subject,
       description,
+      status: "pending",
     };
     setLoading(true);
     axios
@@ -36,7 +37,7 @@ const CreateInquiry = () => {
       })
       .catch((error) => {
         setLoading(false);
-        enqueueSnackbar('Error', { variant: 'error' });
+        enqueueSnackbar('Error' + error, { variant: 'error' });
         console.log(error);
       });
   };
