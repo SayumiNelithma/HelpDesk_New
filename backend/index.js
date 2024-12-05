@@ -80,8 +80,8 @@ app.get("/inquiry/details/:id", async(req, res) => {
 /* ****** */
 app.get('/status/:status', async (req, res) => {
   try {
-      const inquiries = await Inquiry.find({ status: req.params.status });
-      res.status(200).json(inquiries); // Ensure an array is sent
+      const inquiry = await Inquiry.find({ status: req.params.status });
+      res.status(200).json(inquiry); // Ensure an array is sent
   } catch (err) {
       res.status(500).json({ error: 'Failed to fetch inquiries' });
   }

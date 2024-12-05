@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Spinner from "../components/Spinner";
 import { Link, useNavigate } from "react-router-dom";
-import InquiryTable_Approver from "./InquiryTable_approver"
 import InquiryCard from "../components/home/InquiryCard";
 import NavbarAdmin from "../components/NavbarAdmin";
 import Sidebar from "../components/Sidebar";
-//import Footer from "../components/Footer";
 import SLIITImage from "../assets/SLIIT.jpg";
+import { AiOutlineEdit } from 'react-icons/ai';
+import { BsInfoCircle } from 'react-icons/bs';
+import { MdOutlineAddBox, MdOutlineDelete } from 'react-icons/md';
 
 const ApproverHome = () => {
   const [inquiry, setInquiry] = useState([]);
@@ -29,9 +30,6 @@ const ApproverHome = () => {
         setLoading(false);
       });
   }, []);
-
-  
-  
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -59,31 +57,27 @@ const ApproverHome = () => {
           <h1 className="text-3xl mb-8 mt-6">Pending Inquiries</h1>
 
           <div className="flex justify-end">
-          <div className="flex space-x-4">
+            <div className="flex space-x-4">
+              <Link to="/approver/resolvedinquiries">
+                <button
+                  className="bg-[#2e902c] text-white font-semibold hover:bg-green-600 px-6 py-3 rounded-sm"
+                  onClick={() => setShowType("card")}
+                >
+                  Resolved Inquiries
+                </button>
+              </Link>
 
-            <Link to="/approver/resolvedinquiries">
-              <button
-                className="bg-[#2e902c] text-white font-semibold hover:bg-green-600 px-6 py-3 rounded-sm"
-                onClick={() => setShowType("card")}
-              >
-                Resolved Inquiries
-              </button>
-            </Link>
-
-            <Link to="/approver/rejectedinquiries">
-              <button
-                className="bg-[#912626] text-white font-semibold hover:bg-red-600 px-6 py-3 rounded-sm"
-                onClick={() => setShowType("card")}
-              >
-                Rejected Inquiries
-              </button>
-            </Link>
-            
+              <Link to="/approver/rejectedinquiries">
+                <button
+                  className="bg-[#912626] text-white font-semibold hover:bg-red-600 px-6 py-3 rounded-sm"
+                  onClick={() => setShowType("card")}
+                >
+                  Rejected Inquiries
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
-        </div>
-
-        
 
         <div className="flex gap-6 mt-8">
           {/* White background container */}
@@ -96,21 +90,56 @@ const ApproverHome = () => {
               <InquiryCard inquiry={inquiry} />
             )}
           </div>
-
-          {/* Service 1 Box */}
-          {/* <div className="bg-[#dbdbdb] shadow-md rounded-lg p-6 w-60">
-            <h2 className="text-2xl font-bold text-gray-800">Service 1</h2>
-            <p className="text-gray-600 mt-2">
-              Brief description of the service or feature. This is a detailed description of the service offered.
-            </p>
-            <Link className="underline">
-              Learn More
-            </Link>
-          </div> */}
         </div>
       </div>
-      {/* <Footer /> */}
     </div>
+  );
+};
+
+const InquiryTable_Approver = ({ inquiry }) => {
+  return (
+    <table className='w-full border-separate border-spacing-2'>
+      <thead>
+        <tr>
+          <th className='border border-slate-600 rounded-md'>No</th>
+          <th className='border border-slate-600 rounded-md'>Request Type</th>
+          <th className='border border-slate-600 rounded-md max-md:hidden'>Request Date</th>
+          <th className='border border-slate-600 rounded-md max-md:hidden'>Priority</th>
+          <th className='border border-slate-600 rounded-md max-md:hidden'>Subject</th>
+          <th className='border border-slate-600 rounded-md max-md:hidden'>Description</th>
+          <th className='border border-slate-600 rounded-md max-md:hidden'>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {inquiry.map((inquiry, index) => (
+          <tr key={inquiry._id} className='h-8'>
+            <td className='border border-slate-700 rounded-md text-center'>{index + 1}</td>
+            <td className='border border-slate-700 rounded-md text-center'>{inquiry.requestType}</td>
+            <td className='border border-slate-700 rounded-md text-center max-md:hidden'>{inquiry.requestDate}</td>
+            <td className='border border-slate-700 rounded-md text-center max-md:hidden'>{inquiry.priority}</td>
+            <td className='border border-slate-700 rounded-md text-center max-md:hidden'>{inquiry.subject}</td>
+            <td className='border border-slate-700 rounded-md text-center max-md:hidden'>{inquiry.description}</td>
+            <td className='border border-slate-700 rounded-md text-center max-md:hidden'>{inquiry.status}</td>
+            <td className='border border-slate-700 rounded-md text-center'>
+              <div className='flex justify-center gap-x-4'>
+                <Link to={`/approver/viewinquiry/${inquiry._id}`}>
+                  <BsInfoCircle className='text-2xl text-green-800' />
+                </Link>
+                {/* Uncomment to enable edit functionality */}
+                {/* 
+                <Link to={`/inquiry/edit/${inquiry._id}`}>
+                  <AiOutlineEdit className='text-2xl text-yellow-600' />
+                </Link> 
+                */}
+                <Link to={`/inquiry/delete/${inquiry._id}`}>
+                  <MdOutlineDelete className='text-2xl text-red-600' />
+                </Link>
+              </div>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   );
 };
 

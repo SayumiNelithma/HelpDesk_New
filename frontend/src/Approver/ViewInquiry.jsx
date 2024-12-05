@@ -33,16 +33,27 @@ const ViewInquiry = () => {
   };
 
   const handleApprove = () => {
-    axios.put(`http://localhost:5555/inquiry/${id}/approve`)
-        .then(() => navigate('/approver/home'))
-        .catch((error) => console.error(error));
-};
+    axios
+      .put(`http://localhost:5555/inquiry/${id}/approve`)
+      .then(() => {
+        navigate('/approver/home'); // Redirect to home after approval
+      })
+      .catch((error) => {
+        console.error('Error approving inquiry:', error);
+      });
+  };
 
-const handleReject = () => {
-    axios.put(`http://localhost:5555/inquiry/${id}/reject`)
-        .then(() => navigate('/approver/home'))
-        .catch((error) => console.error(error));
-};
+  const handleReject = () => {
+    axios
+      .put(`http://localhost:5555/inquiry/${id}/reject`)
+      .then(() => {
+        navigate('/approver/home'); // Redirect to home after rejection
+      })
+      .catch((error) => {
+        console.error('Error rejecting inquiry:', error);
+      });
+  };
+
 
 
   return (

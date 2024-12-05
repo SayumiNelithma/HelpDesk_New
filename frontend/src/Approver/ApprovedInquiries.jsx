@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const Rejected = () => {
+const ApprovedInquiries = () => {
     const [inquiries, setInquiries] = useState([]);
 
     useEffect(() => {
         axios
-            .get("http://localhost:5555/inquiry?status=Rejected")
+            .get("http://localhost:5555/inquiry?status=Approved")
             .then((response) => setInquiries(response.data.data))
             .catch((error) => console.error("Error fetching inquiries:", error));
     }, []);
 
     return (
         <div>
-            <h1>Rejected Inquiries</h1>
+            <h1>Approved Inquiries</h1>
             <table className="w-full border-separate border-spacing-2">
                 <thead>
                     <tr>
@@ -44,4 +44,4 @@ const Rejected = () => {
     );
 };
 
-export default Rejected;
+export default ApprovedInquiries;
