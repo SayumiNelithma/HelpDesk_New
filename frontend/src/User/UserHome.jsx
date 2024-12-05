@@ -7,6 +7,8 @@ import SLIITImage from "../assets/SLIIT.jpg";
 const Home = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
+  const [showType, setShowType] = useState("");
+
 
   const handleSearch = (e) => {
     e.preventDefault();

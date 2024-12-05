@@ -33,12 +33,17 @@ const ViewInquiry = () => {
   };
 
   const handleApprove = () => {
-    navigate(`/approver/home`); 
-  };
+    axios.put(`http://localhost:5555/inquiry/${id}/approve`)
+        .then(() => navigate('/approver/home'))
+        .catch((error) => console.error(error));
+};
 
-  const handleReject = () => {
-    navigate(`/approver/home`); 
-  };
+const handleReject = () => {
+    axios.put(`http://localhost:5555/inquiry/${id}/reject`)
+        .then(() => navigate('/approver/home'))
+        .catch((error) => console.error(error));
+};
+
 
   return (
     <div className="p-4 mt-24">

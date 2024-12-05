@@ -129,7 +129,7 @@ router.put('/:id', async (request, response) => {
     }
 });
 
-//route for deleting a book
+//route for deleting an inquiry
 router.delete('/:id', async (request, response) => {
     try{
         const { id } = request.params;

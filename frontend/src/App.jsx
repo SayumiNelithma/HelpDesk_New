@@ -18,16 +18,14 @@ import MyInquiries from './User/MyInquiries';
 import AboutUs from './User/AboutUs';
 import Services from './User/Services';
 import ContactUs from './User/ContactUs';
-import Resolved from './User/Resolved';
-import Rejected from './User/Rejected';
+import MyProfile from './User/MyProfile';
 
 import ApproverHome from './Approver/ApproverHome';
 import CreateResponse from './Approver/CreateResponse';
 import ViewInquiry from './Approver/ViewInquiry';
-import InquiryList from './Approver/InquiryList';
 import RejectedInquiries from './Approver/RejectedInquiries';
-import ResolvedInquiries from './Approver/ResolvedInquiries';
-import MyProfile from './User/MyProfile';
+import AcceptedInquiries from './Approver/AcceptedInquiries';
+
 
 
 
@@ -55,23 +53,17 @@ const App = () => {
       <Route path='/user/aboutus' element={<AboutUs />} />
       <Route path='/user/services' element={<Services />} />
       <Route path='/user/contactus' element={<ContactUs />} />
-      <Route path='/user/myinquiries/resolvedinquiries' element={<Resolved />} />
-      <Route path='/user/myinquiries/rejectedinquiries' element={<Rejected />} />
+      <Route path="/approver/accepted" element={<AcceptedInquiries />} />
+      <Route path="/approver/rejected" element={<RejectedInquiries />} />
+
 
 
 
       <Route path='/approver/home' element={<ApproverHome />} />
       <Route path='/approver/createresponse' element={<CreateResponse />} />
       <Route path='/approver/viewinquiry/:id' element={<ViewInquiry />} />
-      <Route path='/approver/inquirylist' element={<InquiryList />} />
-      <Route path='/approver/rejectedinquiries' element={<RejectedInquiries />} />
-      <Route path='/approver/resolvedinquiries' element={<ResolvedInquiries />} />
 
 
-
-
-
-      
     </Routes>
   );
 };

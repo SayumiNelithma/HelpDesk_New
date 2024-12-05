@@ -9,7 +9,7 @@ import Sidebar from "../components/Sidebar";
 //import Footer from "../components/Footer";
 import SLIITImage from "../assets/SLIIT.jpg";
 
-const InquiryList = () => {
+const ApproverHome = () => {
   const [inquiry, setInquiry] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showType, setShowType] = useState("table");
@@ -29,6 +29,9 @@ const InquiryList = () => {
         setLoading(false);
       });
   }, []);
+
+  
+  
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -111,4 +114,4 @@ const InquiryList = () => {
   );
 };
 
-export default InquiryList;
+export default ApproverHome;

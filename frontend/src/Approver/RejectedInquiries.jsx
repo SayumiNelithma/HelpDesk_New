@@ -1,11 +1,21 @@
 import React from 'react'
 
-function RejectedInquiries() {
-  return (
-    <div>
-      <h1>RejectedInquiries</h1>
-    </div>
-  )
-}
+const RejectedInquiries = () => {
+  const [inquiries, setInquiries] = useState([]);
 
-export default RejectedInquiries
+  useEffect(() => {
+      axios.get('http://localhost:5555/inquiry/status/rejected')
+          .then((response) => setInquiries(response.data))
+          .catch((error) => console.error(error));
+  }, []);
+
+  return (
+      <div>
+          <h1>Rejected Inquiries</h1>
+          <InquiryTable inquiries={inquiries} />
+      </div>
+  );
+};
+
+export default RejectedInquiries;
+
