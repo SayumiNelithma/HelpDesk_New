@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import NavbarAdmin from "../components/NavbarAdmin";
 //import Footer from "../components/Footer";
-import Sidebar from "../components/Sidebar";
+import SidebarAdmin from "../components/SidebarAdmin";
 import SLIITImage from "../assets/SLIIT.jpg";
 
 const Home = () => {
@@ -44,7 +44,7 @@ const Home = () => {
       <NavbarAdmin isSidebarOpen={isSidebarOpen} />
 
       {/* Sidebar Component */}
-      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+      <SidebarAdmin isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
 
       {/* Page Content */}
       <div

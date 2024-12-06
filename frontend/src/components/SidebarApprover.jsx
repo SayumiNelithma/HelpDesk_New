@@ -1,7 +1,7 @@
 import React from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 
-const Sidebar = ({ isOpen, toggleSidebar }) => {
+const SidebarApprover = ({ isOpen, toggleSidebar }) => {
   return (
     <>
       {/* Sidebar Toggle Button */}
@@ -17,7 +17,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         }}
       >
         <nav style={styles.sidebarNav}>
-          <a href="/admin/home" style={styles.navLink}>
+          <a href="/approver/home" style={styles.navLink}>
             Home
           </a>
           <a href="#services" style={styles.navLink}>
@@ -80,4 +80,4 @@ const styles = {
   },
 };
 
-export default Sidebar;
+export default SidebarApprover;

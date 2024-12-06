@@ -1,9 +1,8 @@
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
-//import {assets} from '../assets/Profile.jpg'
-//import {NavLink} from 'react-router-dom'
 
-const NavbarOne = ({ isSidebarOpen }) => {
+const NavbarApprover = ({ isSidebarOpen }) => {
   return (
     <header
       style={{
@@ -13,24 +12,20 @@ const NavbarOne = ({ isSidebarOpen }) => {
     >
       <div style={styles.container}>
       <h1 style={styles.title}>
-          <a href="/" style={{ textDecoration: "none", color: "inherit" }}>
+          <a href="/approver/home" style={{ textDecoration: "none", color: "inherit" }}>
             Support Desk
           </a>
         </h1>
-        <nav style={styles.navList}>
-          <a href="/" style={styles.navLink}>
-            Home
-          </a>
-          <a href="/user/services" style={styles.navLink}>
-            Services
-          </a>
-          <a href="/user/aboutus" style={styles.navLink}>
-            About Us
-          </a>
-        </nav>
+        
         <div style={styles.rightSection}>
-          <FaUserCircle style={styles.profileIcon} />
-         
+          <Link to="/login">
+            <button
+              className="bg-[#3258a3] text-white font-semibold hover:bg-sky-600 px-6 py-3 rounded-sm"
+              //onClick={() => setShowType("card")}
+            >
+              Log out
+            </button>
+          </Link>
         </div>
       </div>
     </header>
@@ -87,4 +82,4 @@ const styles = {
   },
 };
 
-export default NavbarOne;
+export default NavbarApprover;

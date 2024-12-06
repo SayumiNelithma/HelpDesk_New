@@ -3,12 +3,12 @@ import axios from "axios";
 import Spinner from "../components/Spinner";
 import { Link, useNavigate } from "react-router-dom";
 import InquiryCard from "../components/home/InquiryCard";
-import NavbarAdmin from "../components/NavbarAdmin";
-import Sidebar from "../components/Sidebar";
 import SLIITImage from "../assets/SLIIT.jpg";
 import { AiOutlineEdit } from 'react-icons/ai';
 import { BsInfoCircle } from 'react-icons/bs';
 import { MdOutlineAddBox, MdOutlineDelete } from 'react-icons/md';
+import NavbarApprover from "../components/NavbarApprover";
+import SidebarApprover from "../components/SidebarApprover";
 
 const ApproverHome = () => {
   const [inquiry, setInquiry] = useState([]);
@@ -48,10 +48,10 @@ const ApproverHome = () => {
         }}
       ></div>
       {/* Navbar with Sidebar Toggle */}
-      <NavbarAdmin isSidebarOpen={isSidebarOpen} />
+      <NavbarApprover isSidebarOpen={isSidebarOpen} />
 
       {/* Sidebar Component */}
-      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+      <SidebarApprover isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
       <div className="flex-grow p-4 mt-20 mr-8">
         <div className="flex justify-between items-center">
           <h1 className="text-3xl mb-8 mt-6">Pending Inquiries</h1>
@@ -131,9 +131,9 @@ const InquiryTable_Approver = ({ inquiry }) => {
                   <AiOutlineEdit className='text-2xl text-yellow-600' />
                 </Link> 
                 */}
-                <Link to={`/inquiry/delete/${inquiry._id}`}>
+                {/* <Link to={`/inquiry/delete/${inquiry._id}`}>
                   <MdOutlineDelete className='text-2xl text-red-600' />
-                </Link>
+                </Link> */}
               </div>
             </td>
           </tr>

@@ -11,7 +11,11 @@ const NavbarAdmin = ({ isSidebarOpen }) => {
       }}
     >
       <div style={styles.container}>
-        <h1 style={styles.title}>Support Desk</h1>
+      <h1 style={styles.title}>
+          <a href="/admin/home" style={{ textDecoration: "none", color: "inherit" }}>
+            Support Desk
+          </a>
+        </h1>
         
         <div style={styles.rightSection}>
           <Link to="/login">

@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate, Link, useParams } from "react-router-dom";
 import Spinner from '../components/Spinner';
 import NavbarAdmin from "../components/NavbarAdmin";
-import Sidebar from '../components/Sidebar';
+import Sidebar from '../components/SidebarAdmin';
 
 axios.defaults.withCredentials = true;
 

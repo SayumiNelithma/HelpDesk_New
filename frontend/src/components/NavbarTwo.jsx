@@ -101,6 +101,7 @@ const styles = {
     margin: 0,
     fontSize: "30px",
     fontWeight: "bold",
+    color: '#ffffff'
   },
   navList: {
     display: "flex",

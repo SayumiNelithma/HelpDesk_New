@@ -5,7 +5,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useSnackbar } from "notistack";
 import NavbarAdmin from "../components/NavbarAdmin";
-import Sidebar from "../components/Sidebar";
+import SidebarAdmin from "../components/SidebarAdmin";
 import SLIITImage from "../assets/SLIIT.jpg";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
@@ -50,7 +50,7 @@ const CreateAccount = () => {
       <NavbarAdmin isSidebarOpen={isSidebarOpen} />
 
       {/* Sidebar Component */}
-      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+      <SidebarAdmin isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
       {/* Full-Screen Background Image */}
       <div
         className="absolute top-0 left-0 w-full h-full bg-cover bg-center"
