@@ -58,8 +58,6 @@ const App = () => {
       <Route path='/user/myinquiries/rejectedinquiries' element={<Rejected />} />
 
       
-
-
       <Route path='/approver/home' element={<ApproverHome />} />
       <Route path='/approver/createresponse' element={<CreateResponse />} />
       <Route path='/approver/viewinquiry/:id' element={<ViewInquiry />} />
