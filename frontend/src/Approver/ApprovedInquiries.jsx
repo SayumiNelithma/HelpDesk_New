@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const ApprovedInquiries = () => {
     const [inquiries, setInquiries] = useState([]);
@@ -13,6 +14,11 @@ const ApprovedInquiries = () => {
 
     return (
         <div>
+            <div>
+                <Link to={`/approver/home`}>
+                    Back
+                </Link>
+            </div>
             <h1>Approved Inquiries</h1>
             <table className="w-full border-separate border-spacing-2">
                 <thead>

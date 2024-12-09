@@ -13,7 +13,7 @@ const InquiryTable = ({ inquiry }) => {
           <th className='border border-slate-600 rounded-md max-md:hidden'>Request Date</th>
           <th className='border border-slate-600 rounded-md max-md:hidden'>Priority</th>
           <th className='border border-slate-600 rounded-md max-md:hidden'>Subject</th>
-          <th className='border border-slate-600 rounded-md max-md:hidden'>Description</th>
+          {/* <th className='border border-slate-600 rounded-md max-md:hidden'>Description</th> */}
           <th className='border border-slate-600 rounded-md max-md:hidden'>Status</th>
           {/* <th className='border border-slate-600 rounded-md max-md:hidden'>Status</th> */}
 
@@ -37,11 +37,25 @@ const InquiryTable = ({ inquiry }) => {
             <td className='border border-slate-700 rounded-md text-center max-md:hidden'>
               {inquiry.subject}
             </td>
-            <td className='border border-slate-700 rounded-md text-center max-md:hidden'>
+            {/* <td className='border border-slate-700 rounded-md text-center max-md:hidden'>
               {inquiry.description}
-            </td>
-            <td className='border border-slate-700 rounded-md text-center max-md:hidden'>
+            </td> */}
+            {/* <td className='border border-slate-700 rounded-md text-center max-md:hidden'>
               {inquiry.status}
+            </td> */}
+            <td className="border border-slate-700 rounded-md text-center max-md:hidden">
+              <span
+                className={
+                  inquiry.status === "Approved"
+                    ? "text-green-600 font-semibold"
+                    : inquiry.status === "Rejected"
+                    ? "text-red-600 font-semibold"
+                    : "text-yellow-700 font-semibold"
+
+                }
+              >
+                {inquiry.status}
+              </span>
             </td>
             <td className='border border-slate-700 rounded-md text-center'>
               <div className='flex justify-center gap-x-4'>

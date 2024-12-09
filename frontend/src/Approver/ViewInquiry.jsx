@@ -62,11 +62,11 @@ const ViewInquiry = () => {
       <NavbarAdmin isSidebarOpen={isSidebarOpen} />
       <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
 
-      <div className="button mb-4">
+      <div>
         <Link to={`/approver/home`}>
-          <button className="bg-sky-600 text-white px-4 py-2 rounded-md hover:bg-sky-700">
+          
             Back
-          </button>
+          
         </Link>
       </div>
 

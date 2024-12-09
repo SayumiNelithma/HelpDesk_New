@@ -19,7 +19,10 @@ const MyInquiries = () => {
     axios
       .get("http://localhost:5555/inquiry")
       .then((response) => {
-        setInquiry(response.data.data);
+        const sortedInquiries = response.data.data.sort(
+          (a, b) => new Date(b.requestDate) - new Date(a.requestDate)
+        );
+        setInquiry(sortedInquiries);
         setLoading(false);
       })
       .catch((error) => {
@@ -29,15 +32,12 @@ const MyInquiries = () => {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="relative min-h-screen flex flex-col">
       <div
-        className="absolute top-0 left-0 w-full h-full bg-cover bg-center"
+        className="absolute top-0 left-0 w-full h-full bg-cover bg-center z-[-1]"
         style={{
           backgroundImage: `url(${SLIITImage})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          opacity: 0.3,
-          zIndex: -1,
+          opacity: 0.6,
         }}
       ></div>
       <NavbarTwo />

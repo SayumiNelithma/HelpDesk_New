@@ -1,65 +1,42 @@
 import React from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 
-const SidebarApprover = ({ isOpen, toggleSidebar }) => {
+const SidebarApprover = () => {
   return (
-    <>
-      {/* Sidebar Toggle Button */}
-      <button style={styles.toggleButton} onClick={toggleSidebar}>
-        {isOpen ? <FaTimes style={styles.icon} /> : <FaBars style={styles.icon} />}
-      </button>
-
-      {/* Sidebar */}
-      <div
-        style={{
-          ...styles.sidebar,
-          transform: isOpen ? "translateX(0)" : "translateX(-100%)",
-        }}
-      >
-        <nav style={styles.sidebarNav}>
-          <a href="/approver/home" style={styles.navLink}>
-            Home
-          </a>
-
-          <a href="" style={styles.navLink}>
-            IT Issues
-          </a>
-
-          <a href="" style={styles.navLink}>
-            Software Installation
-          </a>
-
-          <a href="" style={styles.navLink}>
-            Password Reset
-          </a>
-
-          <a href="" style={styles.navLink}>
-            Hardware Issues
-          </a>
-
-          <a href="" style={styles.navLink}>
-            Service Access Requests
-          </a>
-
-          <a href="" style={styles.navLink}>
-            Bug Reports
-          </a>
-
-          <a href="" style={styles.navLink}>
-            Feature Requests
-          </a>
-
-          <a href="" style={styles.navLink}>
-            Feedbacks or Suggestions
-          </a>
-
-          <a href="" style={styles.navLink}>
-            Other
-          </a>
-          
-        </nav>
-      </div>
-    </>
+    <div style={styles.sidebar}>
+      <nav style={styles.sidebarNav}>
+        <a href="/approver/home" style={styles.navLink}>
+          Home
+        </a>
+        <a href="" style={styles.navLink}>
+          IT Issues
+        </a>
+        <a href="" style={styles.navLink}>
+          Software Installation
+        </a>
+        <a href="" style={styles.navLink}>
+          Password Reset
+        </a>
+        <a href="" style={styles.navLink}>
+          Hardware Issues
+        </a>
+        <a href="" style={styles.navLink}>
+          Service Access Requests
+        </a>
+        <a href="" style={styles.navLink}>
+          Bug Reports
+        </a>
+        <a href="" style={styles.navLink}>
+          Feature Requests
+        </a>
+        <a href="" style={styles.navLink}>
+          Feedbacks or Suggestions
+        </a>
+        <a href="" style={styles.navLink}>
+          Other
+        </a>
+      </nav>
+    </div>
   );
 };
 
@@ -80,17 +57,16 @@ const styles = {
   },
   sidebar: {
     position: "fixed",
-    top: "80px", // Adjust this to position the sidebar below the navbar
+    top: "80px",
     left: 0,
-    height: "calc(100% - 80px)", // Sidebar will take the remaining height below navbar
+    height: "calc(100% - 80px)",
     width: "250px",
     backgroundColor: "#00416A",
     color: "#fff",
     padding: "20px",
     boxSizing: "border-box",
     boxShadow: "2px 0 5px rgba(0, 0, 0, 0.2)",
-    transition: "transform 0.3s ease-in-out",
-    zIndex: 1050, // Ensure sidebar is below navbar but above other content
+    zIndex: 1050,
   },
   sidebarNav: {
     display: "flex",

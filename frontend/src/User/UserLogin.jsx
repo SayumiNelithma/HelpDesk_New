@@ -64,7 +64,7 @@ const UserLogin = () => {
           backgroundImage: `url(${SLIITImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          opacity: 0.3,
+          opacity: 0.4,
           zIndex: -1,
         }}
       ></div>
@@ -76,7 +76,7 @@ const UserLogin = () => {
           <h1 className="text-3xl text-center mb-8">Login</h1>
 
           <div className="my-4">
-            <label className="text-xl text-gray-600 mb-2 block">Email</label>
+            <label className="text-xl font-semibold text-gray-600 mb-2 block">Email</label>
             <input
               type="email"
               value={email}
@@ -87,7 +87,7 @@ const UserLogin = () => {
           </div>
 
           <div className="my-4">
-            <label className="text-xl text-gray-600 mb-2 block">Password</label>
+            <label className="text-xl font-semibold text-gray-600 mb-2 block">Password</label>
             <div className="relative">
               <input
                 type={passwordVisible ? "text" : "password"}

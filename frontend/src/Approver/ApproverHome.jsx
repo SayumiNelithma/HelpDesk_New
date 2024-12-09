@@ -4,9 +4,7 @@ import Spinner from "../components/Spinner";
 import { Link, useNavigate } from "react-router-dom";
 import InquiryCard from "../components/home/InquiryCard";
 import SLIITImage from "../assets/SLIIT.jpg";
-import { AiOutlineEdit } from 'react-icons/ai';
 import { BsInfoCircle } from 'react-icons/bs';
-import { MdOutlineAddBox, MdOutlineDelete } from 'react-icons/md';
 import NavbarApprover from "../components/NavbarApprover";
 import SidebarApprover from "../components/SidebarApprover";
 
@@ -22,7 +20,10 @@ const ApproverHome = () => {
     axios
       .get("http://localhost:5555/inquiry")
       .then((response) => {
-        setInquiry(response.data.data);
+        const sortedInquiries = response.data.data.sort(
+          (a, b) => new Date(b.requestDate) - new Date(a.requestDate)
+        );
+        setInquiry(sortedInquiries);
         setLoading(false);
       })
       .catch((error) => {
@@ -31,31 +32,21 @@ const ApproverHome = () => {
       });
   }, []);
 
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
-
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="relative min-h-screen flex flex-col">
       <div
-        className="absolute top-0 left-0 w-full h-full bg-cover bg-center"
+        className="absolute top-0 left-0 w-full h-full bg-cover bg-center z-[-1]"
         style={{
           backgroundImage: `url(${SLIITImage})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          opacity: 0.3,
-          zIndex: -1,
+          opacity: 0.6,
         }}
       ></div>
       {/* Navbar with Sidebar Toggle */}
       <NavbarApprover isSidebarOpen={isSidebarOpen} />
+      {/* Sidebar */}
+      <SidebarApprover />
 
-      {/* Sidebar Component */}
-      <SidebarApprover isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-      
-      <div
-        className={`flex-grow p-4 mt-20 mr-8 transition-all ${isSidebarOpen ? "ml-64" : "ml-0"}`}
-      >
+      <div className="flex-grow p-4 ml-[250px] mt-20 mr-8">
         <div className="flex justify-between items-center">
           <h1 className="text-3xl mb-8 mt-6">Pending Inquiries</h1>
 
@@ -64,7 +55,6 @@ const ApproverHome = () => {
               <Link to="/approver/resolvedinquiries">
                 <button
                   className="bg-[#2e902c] text-white font-semibold hover:bg-green-600 px-6 py-3 rounded-sm"
-                  onClick={() => setShowType("card")}
                 >
                   Resolved Inquiries
                 </button>
@@ -73,7 +63,6 @@ const ApproverHome = () => {
               <Link to="/approver/rejectedinquiries">
                 <button
                   className="bg-[#912626] text-white font-semibold hover:bg-red-600 px-6 py-3 rounded-sm"
-                  onClick={() => setShowType("card")}
                 >
                   Rejected Inquiries
                 </button>
@@ -83,8 +72,7 @@ const ApproverHome = () => {
         </div>
 
         <div className="flex gap-6 mt-8">
-          {/* White background container */}
-          <div className="bg-white shadow-lg rounded-lg p-6 flex-1 mt-0">
+          <div className="bg-white shadow-lg rounded-lg p-6 flex-1">
             {loading ? (
               <Spinner />
             ) : showType === "table" ? (
@@ -109,7 +97,7 @@ const InquiryTable_Approver = ({ inquiry }) => {
           <th className="border border-slate-600 rounded-md max-md:hidden">Request Date</th>
           <th className="border border-slate-600 rounded-md max-md:hidden">Priority</th>
           <th className="border border-slate-600 rounded-md max-md:hidden">Subject</th>
-          <th className="border border-slate-600 rounded-md max-md:hidden">Description</th>
+          {/* <th className="border border-slate-600 rounded-md max-md:hidden">Description</th> */}
           <th className="border border-slate-600 rounded-md max-md:hidden">Status</th>
         </tr>
       </thead>
@@ -121,8 +109,21 @@ const InquiryTable_Approver = ({ inquiry }) => {
             <td className="border border-slate-700 rounded-md text-center max-md:hidden">{inquiry.requestDate}</td>
             <td className="border border-slate-700 rounded-md text-center max-md:hidden">{inquiry.priority}</td>
             <td className="border border-slate-700 rounded-md text-center max-md:hidden">{inquiry.subject}</td>
-            <td className="border border-slate-700 rounded-md text-center max-md:hidden">{inquiry.description}</td>
-            <td className="border border-slate-700 rounded-md text-center max-md:hidden">{inquiry.status}</td>
+            {/* <td className="border border-slate-700 rounded-md text-center max-md:hidden">{inquiry.description}</td> */}
+            <td className="border border-slate-700 rounded-md text-center max-md:hidden">
+              <span
+                className={
+                  inquiry.status === "Approved"
+                    ? "text-green-600 font-semibold"
+                    : inquiry.status === "Rejected"
+                    ? "text-red-600 font-semibold"
+                    : "text-yellow-700 font-semibold"
+
+                }
+              >
+                {inquiry.status}
+              </span>
+            </td>
             <td className="border border-slate-700 rounded-md text-center">
               <div className="flex justify-center gap-x-4">
                 <Link to={`/approver/viewinquiry/${inquiry._id}`}>
@@ -136,5 +137,6 @@ const InquiryTable_Approver = ({ inquiry }) => {
     </table>
   );
 };
+
 
 export default ApproverHome;
