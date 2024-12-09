@@ -45,24 +45,24 @@ const styles = {
     color: "#fff",
     fontSize: "24px",
     cursor: "pointer",
-    zIndex: 1100,
+    zIndex: 1200, // Sidebar toggle button above everything else
   },
   icon: {
     color: "#fff",
   },
   sidebar: {
     position: "fixed",
-    top: 0,
+    top: "80px", // Sidebar will be under the navbar
     left: 0,
-    height: "100%",
+    height: "calc(100% - 80px)", // Sidebar height adjusted to avoid overlapping navbar
     width: "250px",
-    backgroundColor: "#1F305E",
+    backgroundColor: "#00416A",
     color: "#fff",
     padding: "20px",
     boxSizing: "border-box",
     boxShadow: "2px 0 5px rgba(0, 0, 0, 0.2)",
     transition: "transform 0.3s ease-in-out",
-    zIndex: 1050,
+    zIndex: 1000, // Sidebar behind navbar
   },
   sidebarNav: {
     display: "flex",

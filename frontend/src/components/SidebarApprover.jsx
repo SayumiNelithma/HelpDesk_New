@@ -20,15 +20,43 @@ const SidebarApprover = ({ isOpen, toggleSidebar }) => {
           <a href="/approver/home" style={styles.navLink}>
             Home
           </a>
-          <a href="#services" style={styles.navLink}>
-            Services
+
+          <a href="" style={styles.navLink}>
+            IT Issues
           </a>
-          <a href="#about-us" style={styles.navLink}>
-            About Us
+
+          <a href="" style={styles.navLink}>
+            Software Installation
           </a>
-          <a href="#contact" style={styles.navLink}>
-            Contact
+
+          <a href="" style={styles.navLink}>
+            Password Reset
           </a>
+
+          <a href="" style={styles.navLink}>
+            Hardware Issues
+          </a>
+
+          <a href="" style={styles.navLink}>
+            Service Access Requests
+          </a>
+
+          <a href="" style={styles.navLink}>
+            Bug Reports
+          </a>
+
+          <a href="" style={styles.navLink}>
+            Feature Requests
+          </a>
+
+          <a href="" style={styles.navLink}>
+            Feedbacks or Suggestions
+          </a>
+
+          <a href="" style={styles.navLink}>
+            Other
+          </a>
+          
         </nav>
       </div>
     </>
@@ -45,24 +73,24 @@ const styles = {
     color: "#fff",
     fontSize: "24px",
     cursor: "pointer",
-    zIndex: 1100,
+    zIndex: 1200, // Sidebar toggle button remains above other content
   },
   icon: {
     color: "#fff",
   },
   sidebar: {
     position: "fixed",
-    top: 0,
+    top: "80px", // Adjust this to position the sidebar below the navbar
     left: 0,
-    height: "100%",
+    height: "calc(100% - 80px)", // Sidebar will take the remaining height below navbar
     width: "250px",
-    backgroundColor: "#1F305E",
+    backgroundColor: "#00416A",
     color: "#fff",
     padding: "20px",
     boxSizing: "border-box",
     boxShadow: "2px 0 5px rgba(0, 0, 0, 0.2)",
     transition: "transform 0.3s ease-in-out",
-    zIndex: 1050,
+    zIndex: 1050, // Ensure sidebar is below navbar but above other content
   },
   sidebarNav: {
     display: "flex",

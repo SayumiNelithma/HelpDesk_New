@@ -52,7 +52,10 @@ const ApproverHome = () => {
 
       {/* Sidebar Component */}
       <SidebarApprover isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-      <div className="flex-grow p-4 mt-20 mr-8">
+      
+      <div
+        className={`flex-grow p-4 mt-20 mr-8 transition-all ${isSidebarOpen ? "ml-64" : "ml-0"}`}
+      >
         <div className="flex justify-between items-center">
           <h1 className="text-3xl mb-8 mt-6">Pending Inquiries</h1>
 
@@ -98,42 +101,33 @@ const ApproverHome = () => {
 
 const InquiryTable_Approver = ({ inquiry }) => {
   return (
-    <table className='w-full border-separate border-spacing-2'>
+    <table className="w-full border-separate border-spacing-2">
       <thead>
         <tr>
-          <th className='border border-slate-600 rounded-md'>No</th>
-          <th className='border border-slate-600 rounded-md'>Request Type</th>
-          <th className='border border-slate-600 rounded-md max-md:hidden'>Request Date</th>
-          <th className='border border-slate-600 rounded-md max-md:hidden'>Priority</th>
-          <th className='border border-slate-600 rounded-md max-md:hidden'>Subject</th>
-          <th className='border border-slate-600 rounded-md max-md:hidden'>Description</th>
-          <th className='border border-slate-600 rounded-md max-md:hidden'>Status</th>
+          <th className="border border-slate-600 rounded-md">No</th>
+          <th className="border border-slate-600 rounded-md">Request Type</th>
+          <th className="border border-slate-600 rounded-md max-md:hidden">Request Date</th>
+          <th className="border border-slate-600 rounded-md max-md:hidden">Priority</th>
+          <th className="border border-slate-600 rounded-md max-md:hidden">Subject</th>
+          <th className="border border-slate-600 rounded-md max-md:hidden">Description</th>
+          <th className="border border-slate-600 rounded-md max-md:hidden">Status</th>
         </tr>
       </thead>
       <tbody>
         {inquiry.map((inquiry, index) => (
-          <tr key={inquiry._id} className='h-8'>
-            <td className='border border-slate-700 rounded-md text-center'>{index + 1}</td>
-            <td className='border border-slate-700 rounded-md text-center'>{inquiry.requestType}</td>
-            <td className='border border-slate-700 rounded-md text-center max-md:hidden'>{inquiry.requestDate}</td>
-            <td className='border border-slate-700 rounded-md text-center max-md:hidden'>{inquiry.priority}</td>
-            <td className='border border-slate-700 rounded-md text-center max-md:hidden'>{inquiry.subject}</td>
-            <td className='border border-slate-700 rounded-md text-center max-md:hidden'>{inquiry.description}</td>
-            <td className='border border-slate-700 rounded-md text-center max-md:hidden'>{inquiry.status}</td>
-            <td className='border border-slate-700 rounded-md text-center'>
-              <div className='flex justify-center gap-x-4'>
+          <tr key={inquiry._id} className="h-8">
+            <td className="border border-slate-700 rounded-md text-center">{index + 1}</td>
+            <td className="border border-slate-700 rounded-md text-center">{inquiry.requestType}</td>
+            <td className="border border-slate-700 rounded-md text-center max-md:hidden">{inquiry.requestDate}</td>
+            <td className="border border-slate-700 rounded-md text-center max-md:hidden">{inquiry.priority}</td>
+            <td className="border border-slate-700 rounded-md text-center max-md:hidden">{inquiry.subject}</td>
+            <td className="border border-slate-700 rounded-md text-center max-md:hidden">{inquiry.description}</td>
+            <td className="border border-slate-700 rounded-md text-center max-md:hidden">{inquiry.status}</td>
+            <td className="border border-slate-700 rounded-md text-center">
+              <div className="flex justify-center gap-x-4">
                 <Link to={`/approver/viewinquiry/${inquiry._id}`}>
-                  <BsInfoCircle className='text-2xl text-green-800' />
+                  <BsInfoCircle className="text-2xl text-green-800" />
                 </Link>
-                {/* Uncomment to enable edit functionality */}
-                {/* 
-                <Link to={`/inquiry/edit/${inquiry._id}`}>
-                  <AiOutlineEdit className='text-2xl text-yellow-600' />
-                </Link> 
-                */}
-                {/* <Link to={`/inquiry/delete/${inquiry._id}`}>
-                  <MdOutlineDelete className='text-2xl text-red-600' />
-                </Link> */}
               </div>
             </td>
           </tr>

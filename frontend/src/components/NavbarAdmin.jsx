@@ -1,28 +1,19 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { FaUserCircle } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const NavbarAdmin = ({ isSidebarOpen }) => {
   return (
-    <header
-      style={{
-        ...styles.header,
-        transform: isSidebarOpen ? "translateX(250px)" : "translateX(0)",
-      }}
-    >
+    <header style={styles.header}>
       <div style={styles.container}>
-      <h1 style={styles.title}>
+        <h1 style={styles.title}>
           <a href="/admin/home" style={{ textDecoration: "none", color: "inherit" }}>
             Support Desk
           </a>
         </h1>
-        
+
         <div style={styles.rightSection}>
           <Link to="/login">
-            <button
-              className="bg-[#3258a3] text-white font-semibold hover:bg-sky-600 px-6 py-3 rounded-sm"
-              //onClick={() => setShowType("card")}
-            >
+            <button className="bg-[#3258a3] text-white font-semibold hover:bg-sky-600 px-6 py-3 rounded-sm">
               Log out
             </button>
           </Link>
@@ -42,8 +33,7 @@ const styles = {
     padding: "20px 30px",
     width: "100%",
     boxSizing: "border-box",
-    zIndex: 1000,
-    transition: "transform 0.3s ease-in-out",
+    zIndex: 1100, // Navbar stays on top
   },
   container: {
     width: "100%",
@@ -57,23 +47,6 @@ const styles = {
     margin: 0,
     fontSize: "30px",
     fontWeight: "bold",
-  },
-  navList: {
-    display: "flex",
-    gap: "40px",
-  },
-  navLink: {
-    color: "#fff",
-    textDecoration: "none",
-    fontSize: "18px",
-    fontWeight: "500",
-    cursor: "pointer",
-    transition: "color 0.3s",
-  },
-  profileIcon: {
-    fontSize: "30px",
-    color: "#fff",
-    cursor: "pointer",
   },
   rightSection: {
     display: "flex",
