@@ -125,18 +125,7 @@ const UserLogin = () => {
           >
             Login
           </button>
-
-          {/* <div className="mt-4 text-center">
-            <p>
-              <span>Don't have an account? </span>
-              <button
-                onClick={() => navigate("/user")} // Navigate to Signup page
-                className="text-braves-navy font-bold hover:underline"
-              >
-                Signup
-              </button>
-            </p>
-          </div> */}
+          
         </div>
       </div>
 
